@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: dev
   jpa:
     show-sql: true
     properties:
@@ -10,8 +10,9 @@ spring:
     schemas: event-manager
   flyway:
     schemas: event-manager
-
-management:
+  data:
+    rest:
+      basePath: /api
   endpoint:
     health:
       show-details: always

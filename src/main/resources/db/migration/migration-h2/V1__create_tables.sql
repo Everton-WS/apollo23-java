@@ -33,8 +33,8 @@ CREATE TABLE activities (
   type VARCHAR(255),
   name VARCHAR(255),
   date TIMESTAMP,
-  start_time TIMESTAMP,
-  end_time TIMESTAMP,
+  start_time TIME,
+  end_time TIME,
   location VARCHAR(255)
 );
 
