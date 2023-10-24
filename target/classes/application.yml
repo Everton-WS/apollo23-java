@@ -10,9 +10,6 @@ spring:
     schemas: event-manager
   flyway:
     schemas: event-manager
-  data:
-    rest:
-      basePath: /api
   endpoint:
     health:
       show-details: always
@@ -20,6 +17,8 @@ spring:
 server:
   error:
     include-message: always
+  servlet:
+    contextPath: /api
 
 springdoc:
   swagger-ui:
