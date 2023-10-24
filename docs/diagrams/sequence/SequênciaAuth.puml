@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User as User
+participant Client as Client
+participant Server as Server
+database Database as Db
+autonumber
+
+User -> Client: Login no App
+Client -> Server: Envio dados Auth
+Server -> Db: Requisição de dados de Auth
+Db --> Server: Resposta dos dados
+Server --> Client: Resposta da Autenticação
+Client --> User: Acesso ao Sistema
+
+@enduml

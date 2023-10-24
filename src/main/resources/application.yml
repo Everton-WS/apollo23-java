@@ -9,12 +9,7 @@ spring:
         format_sql: true
     schemas: event-manager
   flyway:
-    locations: classpath:db/migration
-    baseline-version: 1
     schemas: event-manager
-    baseline-on-migrate: true
-
-management:
   endpoint:
     health:
       show-details: always
@@ -22,6 +17,8 @@ management:
 server:
   error:
     include-message: always
+  servlet:
+    contextPath: /api
 
 springdoc:
   swagger-ui:

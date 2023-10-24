@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User as User
+participant Client as Client
+participant Server as Server
+database Database as Db
+autonumber
+
+User -> Client: Acessa o App
+Client -> Server: Escaneia o QR code do Evento
+Server -> Db: Requisição dos dados do Evento
+Db --> Server: Resposta com dados do Evento
+Server -> Db: Alteração no Score de User
+Db --> Server: Resposta com dados atualizados
+Server --> Client: Resposta com dados atualizados
+Client --> User: Confirmação de Sucesso
+
+@enduml
