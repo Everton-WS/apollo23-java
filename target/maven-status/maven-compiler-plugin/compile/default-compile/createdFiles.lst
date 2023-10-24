@@ -1,0 +1,16 @@
+devs2blu/hackweek/eventmanager/repositories/MyTreasureRepository.class
+devs2blu/hackweek/eventmanager/repositories/MessageRepository.class
+devs2blu/hackweek/eventmanager/repositories/UserRepository.class
+devs2blu/hackweek/eventmanager/repositories/ActivityRepository.class
+devs2blu/hackweek/eventmanager/repositories/QuestionRepository.class
+devs2blu/hackweek/eventmanager/entities/Speaker.class
+devs2blu/hackweek/eventmanager/entities/Treasure.class
+devs2blu/hackweek/eventmanager/entities/Message.class
+devs2blu/hackweek/eventmanager/entities/Question.class
+devs2blu/hackweek/eventmanager/entities/Activity.class
+devs2blu/hackweek/eventmanager/entities/User.class
+devs2blu/hackweek/eventmanager/repositories/TreasureRepository.class
+devs2blu/hackweek/eventmanager/entities/MyTreasure.class
+devs2blu/hackweek/eventmanager/repositories/EventRepository.class
+devs2blu/hackweek/eventmanager/repositories/SpeakerRepository.class
+devs2blu/hackweek/eventmanager/entities/Event.class

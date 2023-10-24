@@ -6,12 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class Activity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,19 +24,20 @@ public class Question {
     private Event event;
 
     @ManyToOne
-    @JoinColumn(name = "activity_id")
-    private Activity activity;
-
-    @ManyToOne
     @JoinColumn(name = "speaker_id")
     private Speaker speaker;
 
-    @Column(name = "question", columnDefinition = "text")
-    private String question;
+    private String type;
+    private String name;
 
-    @Column(name = "approved")
-    private boolean approved;
+    @Column(name = "date")
+    private Timestamp date;
 
-    @Column(name = "excluded")
-    private boolean excluded;
+    @Column(name = "start_time")
+    private Timestamp startTime;
+
+    @Column(name = "end_time")
+    private Timestamp endTime;
+
+    private String location;
 }

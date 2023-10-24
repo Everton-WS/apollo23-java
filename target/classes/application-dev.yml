@@ -10,10 +10,8 @@ spring:
     username: sa
     password: ''
     driver-class-name: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
   flyway:
-    schemas: la-vie
+    schemas: event-manager
     locations: classpath:db/migration-h2
     baseline-version: 1
     baseline-on-migrate: true

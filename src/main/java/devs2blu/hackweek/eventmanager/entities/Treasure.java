@@ -9,9 +9,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+@AllArgsConstructor
+@Table(name = "treasures")
+public class Treasure {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,16 +25,8 @@ public class Question {
     @JoinColumn(name = "activity_id")
     private Activity activity;
 
-    @ManyToOne
-    @JoinColumn(name = "speaker_id")
-    private Speaker speaker;
+    private String token;
 
-    @Column(name = "question", columnDefinition = "text")
-    private String question;
-
-    @Column(name = "approved")
-    private boolean approved;
-
-    @Column(name = "excluded")
-    private boolean excluded;
+    @Column(name = "value")
+    private Integer value;
 }
