@@ -1,6 +1,7 @@
 package devs2blu.hackweek.eventmanager.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,19 +31,10 @@ public class User {
     )
     private Set<Event> events;
 
-    @Column(name = "speaker_id")
-    private Integer speakerId;
-
-    private String type;
     private String name;
+    @Email
+    private String email;
+    private String password;
+    private String mobile;
 
-    private LocalDate date;
-
-    @Column(name = "start_time")
-    private Timestamp startTime;
-
-    @Column(name = "end_time")
-    private Timestamp endTime;
-
-    private String location;
 }
