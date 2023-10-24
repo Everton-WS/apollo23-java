@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor User as User
+participant Client as Client
+participant Server as Server
+database Database as Db
+autonumber
+
+User -> Client: Acessa o App
+Client -> Server: Requisição de dados de Eventos
+Server -> Db: Requisição dos dados de Evento
+Db --> Server: Resposta com dados de Eventos
+Server --> Client: Atualização da tela de Eventos
+Client -> Server: Novo Post em Evento
+Server -> Db: Criação de novo Post vinculado à Evento
+Db --> Server: Resposta contendo lista atualizada de Posts
+Server -> Db: Requisição do Score dos Users dos Posts
+Db --> Server: Resposta com Users dos Posts
+Server --> Server: Ordenar Posts por Score de Users
+Server --> Client: Atualização de tela com Posts atualizados
+Client --> User: Post novo visualizado
+
+@enduml
