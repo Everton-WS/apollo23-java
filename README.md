@@ -27,6 +27,8 @@ Incluir uma camada de gameficação e iteração ao se inscrever em uma palestra
 
 ---
 
+## [Repositório Flutter](https://github.com/Everton-WS/apollo23-flutter)
+
 ## Instalação e Uso
 
 *TODO*
