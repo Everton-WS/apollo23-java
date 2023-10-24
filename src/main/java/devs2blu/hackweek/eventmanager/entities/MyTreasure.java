@@ -31,8 +31,8 @@ public class MyTreasure {
     @JoinColumn(name = "treasure_id")
     private Treasure treasure;
 
-    @Column(name = "value")
-    private Integer value;
+    @Column(name = "score")
+    private Integer score;
 
     @Column(name = "date_time")
     private Timestamp dateTime;

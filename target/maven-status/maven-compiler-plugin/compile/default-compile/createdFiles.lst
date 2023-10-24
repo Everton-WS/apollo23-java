@@ -11,6 +11,7 @@ devs2blu/hackweek/eventmanager/entities/Activity.class
 devs2blu/hackweek/eventmanager/entities/User.class
 devs2blu/hackweek/eventmanager/repositories/TreasureRepository.class
 devs2blu/hackweek/eventmanager/entities/MyTreasure.class
+devs2blu/hackweek/eventmanager/EventManagerApplication.class
 devs2blu/hackweek/eventmanager/repositories/EventRepository.class
 devs2blu/hackweek/eventmanager/repositories/SpeakerRepository.class
 devs2blu/hackweek/eventmanager/entities/Event.class

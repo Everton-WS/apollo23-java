@@ -27,6 +27,6 @@ public class Treasure {
 
     private String token;
 
-    @Column(name = "value")
-    private Integer value;
+    @Column(name = "score")
+    private Integer score;
 }
