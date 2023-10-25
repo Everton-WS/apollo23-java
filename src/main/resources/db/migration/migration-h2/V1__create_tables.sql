@@ -32,6 +32,7 @@ CREATE TABLE activities (
   speaker_id INT,
   type VARCHAR(255),
   name VARCHAR(255),
+  description TEXT,
   date TIMESTAMP,
   start_time TIME,
   end_time TIME,
@@ -63,7 +64,8 @@ CREATE TABLE questions (
   event_id INT,
   activity_id INT,
   speaker_id INT,
-  question TEXT,
+  user_id INT,
+  question_text TEXT,
   approved BOOLEAN,
   excluded BOOLEAN
 );
@@ -74,7 +76,8 @@ CREATE TABLE treasures (
   event_id INT,
   activity_id INT,
   token VARCHAR(255),
-  score INT
+  score INT,
+  hidden BOOLEAN
 );
 
 -- Table for my_treasures

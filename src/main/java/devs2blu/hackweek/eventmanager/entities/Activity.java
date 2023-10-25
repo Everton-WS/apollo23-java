@@ -33,13 +33,16 @@ public class Activity {
     private String type;
     private String name;
 
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
+
     @Column(name = "date")
     private Timestamp date;
 
-    @Column(name = "start_time")
+    @Column(name = "start_time", columnDefinition = "time")
     private Timestamp startTime;
 
-    @Column(name = "end_time")
+    @Column(name = "end_time", columnDefinition = "time")
     private Timestamp endTime;
 
     private String location;

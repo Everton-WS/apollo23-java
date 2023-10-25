@@ -11,7 +11,7 @@ import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.services.ActivityService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/activities")
 public class ActivityController {
 
     private ActivityService activityService;

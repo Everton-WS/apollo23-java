@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/events")
 public class EventController {
 
     private EventService eventService;

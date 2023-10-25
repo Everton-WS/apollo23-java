@@ -29,4 +29,7 @@ public class Treasure {
 
     @Column(name = "score")
     private Integer score;
+
+    @Column(name = "hidden", columnDefinition = "boolean")
+    private Boolean hidden;
 }

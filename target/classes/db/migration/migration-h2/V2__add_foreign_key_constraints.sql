@@ -9,6 +9,7 @@ ALTER TABLE messages ADD CONSTRAINT fk_messages_recipient FOREIGN KEY (recipient
 ALTER TABLE questions ADD CONSTRAINT fk_questions_event FOREIGN KEY (event_id) REFERENCES events (id);
 ALTER TABLE questions ADD CONSTRAINT fk_questions_activity FOREIGN KEY (activity_id) REFERENCES activities (id);
 ALTER TABLE questions ADD CONSTRAINT fk_questions_speaker FOREIGN KEY (speaker_id) REFERENCES speakers (id);
+ALTER TABLE questions ADD CONSTRAINT fk_questions_user FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE treasures ADD CONSTRAINT fk_treasures_event FOREIGN KEY (event_id) REFERENCES events (id);
 ALTER TABLE treasures ADD CONSTRAINT fk_treasures_activity FOREIGN KEY (activity_id) REFERENCES activities (id);
 ALTER TABLE my_treasures ADD CONSTRAINT fk_my_treasures_event FOREIGN KEY (event_id) REFERENCES events (id);

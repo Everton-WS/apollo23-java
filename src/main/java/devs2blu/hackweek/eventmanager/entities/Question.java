@@ -26,11 +26,15 @@ public class Question {
     private Activity activity;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Speaker user;
+
+    @ManyToOne
     @JoinColumn(name = "speaker_id")
     private Speaker speaker;
 
-    @Column(name = "question", columnDefinition = "text")
-    private String question;
+    @Column(name = "question_text", columnDefinition = "text")
+    private String questionText;
 
     @Column(name = "approved")
     private boolean approved;
