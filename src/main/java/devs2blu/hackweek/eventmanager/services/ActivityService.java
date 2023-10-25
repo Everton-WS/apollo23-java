@@ -1,8 +1,4 @@
 package devs2blu.hackweek.eventmanager.services;
-import java.time.LocalDateTime;
-import java.sql.Timestamp;
-
-import org.springframework.stereotype.Service;
 
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityRequest;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
@@ -12,6 +8,9 @@ import devs2blu.hackweek.eventmanager.entities.Speaker;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
+import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 
 @Service
 public class ActivityService {

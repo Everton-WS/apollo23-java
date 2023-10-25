@@ -1,9 +1,5 @@
 package devs2blu.hackweek.eventmanager.services;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import devs2blu.hackweek.eventmanager.dtos.event.EventRequest;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import devs2blu.hackweek.eventmanager.entities.Activity;
@@ -11,6 +7,9 @@ import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.services.builders.Builders;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EventService {
