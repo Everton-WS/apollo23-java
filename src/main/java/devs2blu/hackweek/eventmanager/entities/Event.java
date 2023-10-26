@@ -31,7 +31,10 @@ public class Event {
     @Column(nullable = false)
     private String state;
 
-    @ManyToMany(mappedBy = "events")
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "events")
     private Set<User> users;
 
     @Column(name = "end_date")

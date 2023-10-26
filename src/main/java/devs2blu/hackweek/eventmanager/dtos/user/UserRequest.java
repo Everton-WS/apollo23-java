@@ -1,7 +1,5 @@
 package devs2blu.hackweek.eventmanager.dtos.user;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

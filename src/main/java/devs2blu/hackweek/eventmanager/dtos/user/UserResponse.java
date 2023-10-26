@@ -1,14 +1,12 @@
 package devs2blu.hackweek.eventmanager.dtos.user;
 
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

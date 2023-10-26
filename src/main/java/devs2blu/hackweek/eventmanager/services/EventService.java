@@ -12,13 +12,14 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class EventService {
-    final EventRepository eventRepository;
-    final ActivityRepository activityRepository;
+    private final EventRepository eventRepository;
+    private final ActivityRepository activityRepository;
 
     public List<EventResponse> getAllEvents() {
         List<Event> events =  this.eventRepository.findAll();

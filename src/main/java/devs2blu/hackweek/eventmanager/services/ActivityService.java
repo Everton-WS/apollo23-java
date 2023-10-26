@@ -18,9 +18,9 @@ import java.sql.Timestamp;
 @Service
 @RequiredArgsConstructor
 public class ActivityService {
-    final ActivityRepository activityRepository;
-    final EventRepository eventRepository;
-    final SpeakerRepository speakerRepository;
+    private final ActivityRepository activityRepository;
+    private final EventRepository eventRepository;
+    private final SpeakerRepository speakerRepository;
 
     public ActivityResponse createActivity(ActivityRequest aRequest) {
         Event e = eventRepository.findById(aRequest.getEventId()).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.EVENT_NOT_FOUND));

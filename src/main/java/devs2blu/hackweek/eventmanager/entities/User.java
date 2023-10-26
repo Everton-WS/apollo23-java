@@ -18,10 +18,12 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     // Creates the join table without the need to create a separate entity
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch=FetchType.EAGER)
     @JoinTable(
             name = "users_events",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -39,7 +41,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(length = 20, columnDefinition = "CHAR(20)")
     private String mobile;
 
 }

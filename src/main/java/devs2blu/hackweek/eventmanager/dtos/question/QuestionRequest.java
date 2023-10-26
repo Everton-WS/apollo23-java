@@ -1,11 +1,6 @@
 package devs2blu.hackweek.eventmanager.dtos.question;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import devs2blu.hackweek.eventmanager.entities.Activity;
-import devs2blu.hackweek.eventmanager.entities.Event;
-import devs2blu.hackweek.eventmanager.entities.Speaker;
-import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

@@ -14,6 +14,7 @@ VALUES
 INSERT INTO users_events (user_id, event_id)
 VALUES
   (1, 1),
+  (1, 2),
   (2, 1),
   (2, 2);
 
