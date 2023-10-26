@@ -13,7 +13,7 @@ CREATE TABLE events (
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
-  email VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
   mobile VARCHAR(255),
   password VARCHAR(255)
 );
@@ -28,11 +28,12 @@ CREATE TABLE users_events (
 -- Table for activities
 CREATE TABLE activities (
   id SERIAL PRIMARY KEY,
-  event_id INT,
+  event_id INT REFERENCES events(id),
   speaker_id INT,
   type VARCHAR(255),
   name VARCHAR(255),
-  date TIMESTAMP,
+  description TEXT,
+  date DATE,
   start_time TIMESTAMP,
   end_time TIMESTAMP,
   location VARCHAR(255)
@@ -63,7 +64,8 @@ CREATE TABLE questions (
   event_id INT,
   activity_id INT,
   speaker_id INT,
-  question TEXT,
+  user_id INT,
+  question_text TEXT,
   approved BOOLEAN,
   excluded BOOLEAN
 );
@@ -74,7 +76,8 @@ CREATE TABLE treasures (
   event_id INT,
   activity_id INT,
   token VARCHAR(255),
-  score INT
+  score INT,
+  hidden BOOLEAN
 );
 
 -- Table for my_treasures

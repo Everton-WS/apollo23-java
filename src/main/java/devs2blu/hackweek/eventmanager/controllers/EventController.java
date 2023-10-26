@@ -25,7 +25,7 @@ import java.util.List;
 public class EventController {
     final EventService eventService;
 
-    @Operation(summary = "Get all Activities",
+    @Operation(summary = "Get all Events",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation")
             })
@@ -35,7 +35,7 @@ public class EventController {
         return ResponseEntity.ok().body(allEvents);
     }
 
-    @Operation(summary = "Find Activity by ID", description = "Returns a single Activity",
+    @Operation(summary = "Find Activity by ID", description = "Returns a single Events",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation",
                             content = @Content(schema = @Schema(implementation = EventResponse.class))),

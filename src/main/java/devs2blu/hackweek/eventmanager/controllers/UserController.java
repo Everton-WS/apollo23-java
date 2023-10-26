@@ -31,7 +31,7 @@ public class UserController {
             })
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllEvents() {
-        List<UserResponse> allUsers = userService.getAllUsers();
+        List<UserResponse> allUsers = userService.getAllUsersWithEvents();
         return ResponseEntity.ok().body(allUsers);
     }
 

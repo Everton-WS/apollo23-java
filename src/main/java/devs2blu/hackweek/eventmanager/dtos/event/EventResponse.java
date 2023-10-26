@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 
-@Getter @Builder
+@Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventResponse {

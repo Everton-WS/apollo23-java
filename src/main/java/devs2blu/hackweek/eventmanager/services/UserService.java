@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,16 +25,8 @@ public class UserService {
     private final UserMapper userMapper;
     private final EventMapper eventMapper;
 
-    public List<UserResponse> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        List<UserResponse> userResponses = userMapper.toResponseList(users);
-
-        userResponses.forEach(userResponse -> {
-            List<Event> userEvents = eventRepository.findByUsers_Id(userResponse.getId());
-            userResponse.setEvents(eventMapper.toResponseList(userEvents));
-        });
-
-        return userResponses;
+    public List<UserResponse> getAllUsersWithEvents() {
+        return userMapper.toResponseList(userRepository.findAllWithEvents());
     }
 
     public UserResponse getUserById(Long id) {

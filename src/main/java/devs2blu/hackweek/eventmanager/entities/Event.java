@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public class Event {
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "events")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
     @Column(name = "end_date")
     private Timestamp endDate;
@@ -44,8 +45,8 @@ public class Event {
     private Timestamp startDate;
 
     @OneToMany(mappedBy = "event")
-    private List<Activity> activities;
+    private Set<Activity> activities = new HashSet<>();
 
     @OneToMany(mappedBy = "event")
-    private List<Message> messages;
+    private Set<Message> messages = new HashSet<>();
 }
