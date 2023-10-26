@@ -2,12 +2,10 @@ package devs2blu.hackweek.eventmanager.dtos.question;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

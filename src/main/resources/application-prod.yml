@@ -5,8 +5,14 @@ spring:
     password: postgres
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: event-manager
+        format_sql: true
   flyway:
     url: jdbc:postgresql://localhost:5432/event-manager
     user: postgres
     password: postgres
     locations: classpath:db/migration/migration-postgres
+    schemas: event-manager

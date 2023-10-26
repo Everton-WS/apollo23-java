@@ -5,11 +5,7 @@ spring:
     show-sql: true
     properties:
       hibernate:
-        default_schema: event-manager
         format_sql: true
-    schemas: event-manager
-  flyway:
-    schemas: event-manager
   endpoint:
     health:
       show-details: always

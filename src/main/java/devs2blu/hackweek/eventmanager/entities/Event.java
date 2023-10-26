@@ -49,4 +49,19 @@ public class Event {
 
     @OneToMany(mappedBy = "event")
     private Set<Message> messages = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", website='" + website + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", endDate=" + endDate +
+                ", startDate=" + startDate +
+                ", activities=" + activities +
+                ", messages=" + messages +
+                '}';
+    }
 }

@@ -1,13 +1,12 @@
 package devs2blu.hackweek.eventmanager.dtos.event;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter @Builder
+@Getter
+@Builder
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventRequest {

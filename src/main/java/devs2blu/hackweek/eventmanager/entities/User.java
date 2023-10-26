@@ -2,10 +2,7 @@ package devs2blu.hackweek.eventmanager.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -44,4 +41,15 @@ public class User {
 
     private String mobile;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", events=" + events +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", mobile='" + mobile + '\'' +
+                '}';
+    }
 }

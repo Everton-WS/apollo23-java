@@ -26,6 +26,7 @@ public class UserService {
     private final EventMapper eventMapper;
 
     public List<UserResponse> getAllUsersWithEvents() {
+        System.out.println(userRepository.findAllWithEvents());
         return userMapper.toResponseList(userRepository.findAllWithEvents());
     }
 
@@ -37,6 +38,8 @@ public class UserService {
 
         List<Event> userEvents = eventRepository.findByUsers_Id(id);
         userResponse.setEvents(eventMapper.toResponseList(userEvents));
+        System.out.println(userEvents);
+        System.out.println(user);
 
         return userResponse;
     }
