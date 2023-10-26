@@ -13,7 +13,7 @@ CREATE TABLE events (
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
-  email VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
   mobile VARCHAR(255),
   password VARCHAR(255)
 );

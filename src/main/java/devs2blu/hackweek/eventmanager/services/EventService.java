@@ -1,9 +1,6 @@
 package devs2blu.hackweek.eventmanager.services;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
+import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.event.EventRequest;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import devs2blu.hackweek.eventmanager.entities.Activity;
@@ -11,23 +8,22 @@ import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.services.builders.Builders;
+import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EventService {
-
     private EventRepository eventRepository;
     private ActivityRepository activityRepository;
-    
-    
-
-    public EventService(ActivityRepository activityRepository) {
-        this.activityRepository = activityRepository;
-    }
 
     public List<EventResponse> getAllEvents() {
         List<Event> events =  this.eventRepository.findAll();
 
-        List<EventResponse> eResponses = events.stream().map((e) -> {
+        return events.stream().map(e -> {
             return EventResponse.builder()
             .id(e.getId())
             .name(e.getName())
@@ -37,16 +33,12 @@ public class EventService {
             .startDate(e.getStartDate().toLocalDateTime())
             .endDate(e.getEndDate().toLocalDateTime()).build();
         }).toList();
-
-        return eResponses;
     }
 
-    public EventResponse getEventById(Long id) throws Exception {
-        Event e = this.eventRepository.findById(id).orElseThrow(() -> new Exception("Id Not Found"));
+    public EventResponse getEventById(Long id) {
+        Event e = this.eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.ID_NOT_FOUND));
 
-        EventResponse eResponse = Builders.eventEntityToEventResponse(e);
-
-        return eResponse;
+        return Builders.eventEntityToEventResponse(e);
     }
 
     public EventResponse createEvent(EventRequest eRequest) {
@@ -57,8 +49,8 @@ public class EventService {
         return Builders.eventEntityToEventResponse(newEvent);
     }
 
-    public EventResponse deleteEventById(Long id) throws Exception {
-        Event e = this.eventRepository.findById(id).orElseThrow(() -> new Exception("Id Not Found"));
+    public EventResponse deleteEventById(Long id) {
+        Event e = this.eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.ID_NOT_FOUND));
 
         this.eventRepository.delete(e);
 
