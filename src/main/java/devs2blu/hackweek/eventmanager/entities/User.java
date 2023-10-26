@@ -29,10 +29,17 @@ public class User {
     )
     private Set<Event> events;
 
+    @Column(nullable = false)
     private String name;
+
     @Email
+    @Column(unique = true)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(length = 20, columnDefinition = "CHAR(20)")
     private String mobile;
 
 }

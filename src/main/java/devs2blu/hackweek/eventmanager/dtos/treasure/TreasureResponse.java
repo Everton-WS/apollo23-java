@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TreasureResponse {
-
     private Long id;
     private Integer score;
     private String token;

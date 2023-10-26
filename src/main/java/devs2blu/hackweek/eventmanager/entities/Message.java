@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -36,5 +37,11 @@ public class Message {
 
     @Column(name = "date_time")
     private Timestamp dateTime;
+
+    // Lifecycle Callbacks
+    @PrePersist
+    public void prePersist() {
+        dateTime = Timestamp.valueOf(LocalDateTime.now());
+    }
 }
 

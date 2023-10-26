@@ -37,8 +37,19 @@ public class Question {
     private String questionText;
 
     @Column(name = "approved")
-    private boolean approved;
+    private Boolean approved;
 
     @Column(name = "excluded")
-    private boolean excluded;
+    private Boolean excluded;
+
+    // Lifecycle Callbacks
+    @PrePersist
+    public void prePersist() {
+        if (approved == null) {
+            approved = true;
+        }
+        if (excluded == null) {
+            excluded = false;
+        }
+    }
 }
