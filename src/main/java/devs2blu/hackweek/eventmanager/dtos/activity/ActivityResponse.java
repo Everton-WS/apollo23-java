@@ -12,6 +12,7 @@ public class ActivityResponse {
     private Long eventId;
     private String type;
     private String name;
+    private String description;
     private LocalDateTime date;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

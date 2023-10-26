@@ -11,6 +11,7 @@ public class ActivityRequest {
     private Long speakerId;
     private String type;
     private String name;
+    private String description;
     private LocalDateTime date;
     private LocalDateTime startTime;
     private LocalDateTime endTime;

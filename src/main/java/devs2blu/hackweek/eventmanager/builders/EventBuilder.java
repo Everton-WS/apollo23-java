@@ -1,4 +1,4 @@
-package devs2blu.hackweek.eventmanager.services.builders;
+package devs2blu.hackweek.eventmanager.builders;
 
 import devs2blu.hackweek.eventmanager.dtos.event.EventRequest;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
@@ -6,7 +6,7 @@ import devs2blu.hackweek.eventmanager.entities.Event;
 
 import java.sql.Timestamp;
 
-public class Builders {
+public class EventBuilder {
     
     public static Event eventRequestToEventEntity(EventRequest eRequest) {
         return Event.builder()
