@@ -36,12 +36,12 @@ public class Message {
     private String text;
 
     @Column(name = "date_time")
-    private Timestamp dateTime;
+    private LocalDateTime dateTime;
 
     // Lifecycle Callbacks
     @PrePersist
     public void prePersist() {
-        dateTime = Timestamp.valueOf(LocalDateTime.now());
+        dateTime = LocalDateTime.now();
     }
 }
 

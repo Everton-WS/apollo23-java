@@ -2,7 +2,9 @@ package devs2blu.hackweek.eventmanager.dtos.activity;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Getter
 @Builder
@@ -17,7 +19,7 @@ public class ActivityResponse {
     private String name;
     private String description;
     private LocalDateTime date;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private String location;
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -36,11 +37,11 @@ public class MyTreasure {
     private Integer score;
 
     @Column(name = "date_time")
-    private Timestamp dateTime;
+    private LocalDateTime dateTime;
 
     // Lifecycle Callbacks
     @PrePersist
     public void prePersist() {
-        dateTime = Timestamp.valueOf(LocalDateTime.now());
+        dateTime = LocalDateTime.now();
     }
 }

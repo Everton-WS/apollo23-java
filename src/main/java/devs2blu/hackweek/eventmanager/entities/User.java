@@ -40,16 +40,4 @@ public class User {
     private String password;
 
     private String mobile;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", events=" + events +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", mobile='" + mobile + '\'' +
-                '}';
-    }
 }

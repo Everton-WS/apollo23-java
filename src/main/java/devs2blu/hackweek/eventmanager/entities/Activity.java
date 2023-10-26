@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -36,13 +38,13 @@ public class Activity {
     private String description;
 
     @Column(name = "date")
-    private Timestamp date;
+    private LocalDateTime date;
 
     @Column(name = "start_time", columnDefinition = "time")
-    private Timestamp startTime;
+    private LocalTime startTime;
 
     @Column(name = "end_time", columnDefinition = "time")
-    private Timestamp endTime;
+    private LocalTime endTime;
 
     @Column(nullable = false)
     private String location;

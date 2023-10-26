@@ -2,6 +2,7 @@ package devs2blu.hackweek.eventmanager.dtos.event;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -16,6 +17,6 @@ public class EventResponse {
     private String website;
     private String city;
     private String state;
-    private LocalDateTime endDate;
-    private LocalDateTime startDate;
+    private LocalDate endDate;
+    private LocalDate startDate;
 }

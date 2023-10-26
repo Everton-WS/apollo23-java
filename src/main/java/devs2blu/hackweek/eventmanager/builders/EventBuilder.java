@@ -10,22 +10,24 @@ public class EventBuilder {
     
     public static Event eventRequestToEventEntity(EventRequest eRequest) {
         return Event.builder()
-        .name(eRequest.getName())
-        .website(eRequest.getWebsite())
-        .city(eRequest.getCity())
-        .state(eRequest.getState())
-        .startDate(Timestamp.valueOf(eRequest.getStartDate()))
-        .endDate(Timestamp.valueOf(eRequest.getEndDate())).build();
+                .name(eRequest.getName())
+                .website(eRequest.getWebsite())
+                .city(eRequest.getCity())
+                .state(eRequest.getState())
+                .startDate(eRequest.getStartDate())
+                .endDate(eRequest.getEndDate())
+                .build();
     }
 
     public static EventResponse eventEntityToEventResponse(Event e) {
         return EventResponse.builder()
-        .id(e.getId())
-        .name(e.getName())
-        .city(e.getCity())
-        .state(e.getState())
-        .website(e.getWebsite())
-        .startDate(e.getStartDate().toLocalDateTime())
-        .endDate(e.getEndDate().toLocalDateTime()).build();
+            .id(e.getId())
+            .name(e.getName())
+            .city(e.getCity())
+            .state(e.getState())
+            .website(e.getWebsite())
+            .startDate(e.getStartDate())
+            .endDate(e.getEndDate())
+            .build();
     }
 }

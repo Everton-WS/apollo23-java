@@ -13,9 +13,9 @@ public class ActivityBuilder {
             .name(aRequest.getName())
             .description(aRequest.getDescription())
             .type(aRequest.getType())
-            .startTime(Timestamp.valueOf(aRequest.getStartTime()))
-            .endTime(Timestamp.valueOf(aRequest.getEndTime()))
-            .date(Timestamp.valueOf(aRequest.getDate()))
+            .startTime(aRequest.getStartTime())
+            .endTime(aRequest.getEndTime())
+            .date(aRequest.getDate())
             .build();
     }
 
@@ -25,8 +25,8 @@ public class ActivityBuilder {
             .name(aEntity.getName())
             .description(aEntity.getDescription())
             .type(aEntity.getType())
-            .startTime(aEntity.getStartTime().toLocalDateTime())
-            .endTime(aEntity.getEndTime().toLocalDateTime())
+            .startTime(aEntity.getStartTime())
+            .endTime(aEntity.getEndTime())
             .eventId(aEntity.getEvent().getId())
             .speakerId(aEntity.getSpeaker().getId())
             .location(aEntity.getLocation())
