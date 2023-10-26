@@ -26,7 +26,10 @@ public class Activity {
     @JoinColumn(name = "speaker_id")
     private Speaker speaker;
 
+    @Column(nullable = false)
     private String type;
+
+    @Column(nullable = false)
     private String name;
 
     @Column(name = "description", columnDefinition = "text")
@@ -41,5 +44,6 @@ public class Activity {
     @Column(name = "end_time", columnDefinition = "time")
     private Timestamp endTime;
 
+    @Column(nullable = false)
     private String location;
 }

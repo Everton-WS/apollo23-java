@@ -1,4 +1,24 @@
 package devs2blu.hackweek.eventmanager.dtos.treasure;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TreasureRequest {
+    @NotNull(message = "O score não pode ser nulo")
+    @NotBlank(message = "O score não pode estar em branco")
+    private Integer score;
+
+    @NotNull(message = "O token não pode ser nulo")
+    @NotBlank(message = "O token não pode estar em branco")
+    private String token;
+
+    private Boolean hidden;
 }

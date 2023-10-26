@@ -21,6 +21,7 @@ public class Speaker {
     @JoinColumn(name = "event_id")
     private Event event;
 
+    @Column(nullable = false)
     private String name;
 
     @Column(name = "social_media")

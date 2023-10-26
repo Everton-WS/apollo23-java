@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
@@ -32,4 +35,10 @@ public class Treasure {
 
     @Column(name = "hidden", columnDefinition = "boolean")
     private Boolean hidden;
+
+    // Lifecycle Callbacks
+    @PrePersist
+    public void prePersist() {
+        hidden = hidden != null && hidden;
+    }
 }
