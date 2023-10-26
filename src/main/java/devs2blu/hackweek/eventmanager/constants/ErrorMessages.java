@@ -21,6 +21,12 @@ public class ErrorMessages {
     // Event Error Messages
     public final String EVENT_NOT_FOUND = "Event não encontrado!";
 
+    // Activity Error Messages
+    public final String ACTIVITY_NOT_FOUND = "Activity não encontrado!";
+
+    // Treasure Error Messages
+    public final String TREASURE_NOT_FOUND = "Treasure não encontrado!";
+
     // Speaker Error Messages
     public final String SPEAKER_NOT_FOUND = "Palestrante não foi encontrado";
 }
