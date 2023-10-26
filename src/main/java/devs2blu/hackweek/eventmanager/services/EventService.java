@@ -17,8 +17,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EventService {
-    private EventRepository eventRepository;
-    private ActivityRepository activityRepository;
+    final EventRepository eventRepository;
+    final ActivityRepository activityRepository;
 
     public List<EventResponse> getAllEvents() {
         List<Event> events =  this.eventRepository.findAll();

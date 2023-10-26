@@ -11,5 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Builder
-public record ErrorDto(String message, String status, List<FieldErrorDto> errors) {
+public class ErrorDto {
+    private final String message;
+    private final String status;
+    private final List<FieldErrorDto> errors;
 }
