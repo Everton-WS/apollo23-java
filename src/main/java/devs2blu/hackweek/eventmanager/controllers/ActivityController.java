@@ -2,18 +2,23 @@ package devs2blu.hackweek.eventmanager.controllers;
 
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityRequest;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
+import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
+import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerResponse;
 import devs2blu.hackweek.eventmanager.services.ActivityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 
 @RestController
@@ -23,6 +28,45 @@ import org.springframework.web.bind.annotation.RestController;
 public class ActivityController {
 
     final ActivityService activityService;
+
+    @Operation(summary = "Get All Activities",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation")
+    })
+    @GetMapping
+    public ResponseEntity<List<ActivityResponse>> getAllActivities() {
+        return ResponseEntity.ok(this.activityService.findAllActivities());
+    }
+
+    @Operation(summary = "Get Activity By Id",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
+    @GetMapping("/{id}")
+    public ResponseEntity<ActivityResponse> getActivityById(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.findActivityById(id));
+    } 
+
+    @Operation(summary = "Get Activity's Speaker",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
+    @GetMapping("/{id}/speaker")
+    public ResponseEntity<SpeakerResponse> getActivitySpeaker(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.findSpeakerActivity(id));
+    } 
+
+    @Operation(summary = "Get Activity's Event",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
+    @GetMapping("{id}/event")
+    public ResponseEntity<EventResponse> getActivityEvent(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.findEventActivity(id));
+    }
 
     @Operation(summary = "Create an Activity",
             responses = {
@@ -37,5 +81,15 @@ public class ActivityController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
+    }
+
+    @Operation(summary = "Delete Activity",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Activity Successfully Deleted"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ActivityResponse> deleteActivity(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.deleteActivity(id));
     }
 }

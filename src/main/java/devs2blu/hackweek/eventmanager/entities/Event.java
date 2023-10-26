@@ -3,12 +3,8 @@ package devs2blu.hackweek.eventmanager.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,6 +46,6 @@ public class Event {
     @OneToMany(mappedBy = "event")
     private Set<Activity> activities = new HashSet<>();
 
-    @OneToMany(mappedBy = "event")
-    private Set<Message> messages = new HashSet<>();
+    // @OneToMany(mappedBy = "event")
+    // private Set<Message> messages = new HashSet<>();
 }

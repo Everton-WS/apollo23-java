@@ -8,8 +8,6 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class EventRequest {
     private String name;
     private String website;
