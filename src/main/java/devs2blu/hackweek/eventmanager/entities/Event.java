@@ -36,7 +36,7 @@ public class Event {
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL,
             mappedBy = "events")
-    private Set<User> users = new HashSet<>();
+    private List<User> users;
 
     @Column(name = "end_date")
     private LocalDate endDate;
@@ -46,9 +46,6 @@ public class Event {
 
     @OneToMany(mappedBy = "event")
     private Set<Activity> activities = new HashSet<>();
-
-    // @OneToMany(mappedBy = "event")
-    // private Set<Message> messages = new HashSet<>();
 
     @OneToMany(mappedBy = "event")
     private List<Treasure> treasures;

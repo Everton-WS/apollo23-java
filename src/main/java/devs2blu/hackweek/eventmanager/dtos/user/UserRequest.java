@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.List;
 
 @Getter
 @Setter
@@ -30,5 +29,4 @@ public class UserRequest {
     @Size(min = 9, max = 20, message = "O número de telefone deve ter entre 9 e 20 caracteres")
     private String mobile;
 
-    private List<Long> eventsId;
 }

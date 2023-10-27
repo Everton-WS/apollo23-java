@@ -11,7 +11,6 @@ import devs2blu.hackweek.eventmanager.entities.Speaker;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
-import devs2blu.hackweek.eventmanager.utils.builders.ActivityBuilder;
 import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.SpeakerMapper;
@@ -59,7 +58,7 @@ public class ActivityService {
         Event e = eventRepository.findById(aRequest.getEventId()).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.EVENT_NOT_FOUND));
         Optional<Speaker> s = speakerRepository.findById(aRequest.getSpeakerId());
 
-        Activity aEntity = ActivityBuilder.activityRequestToActivityEntity(aRequest);
+        Activity aEntity = activityMapper.toEntity(aRequest);
         aEntity.setEvent(e);
         s.ifPresent(aEntity::setSpeaker);
 

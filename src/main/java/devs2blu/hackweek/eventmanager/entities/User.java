@@ -7,8 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -30,7 +31,21 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id")
     )
-    private Set<Event> events = new HashSet<>();
+    private List<Event> events;
+
+        @ManyToMany(
+                cascade = CascadeType.ALL,
+                fetch=FetchType.EAGER)
+        @JoinTable(
+                name = "users_treasures",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "treasure_id")
+        )
+    private List<Treasure> treasures;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Question> questions;
 
     @Column(nullable = false)
     private String name;

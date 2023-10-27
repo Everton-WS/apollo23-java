@@ -19,11 +19,7 @@ CREATE TABLE users (
 );
 
 -- Table for users_events
-CREATE TABLE users_events (
-  id SERIAL PRIMARY KEY,
-  user_id INT,
-  event_id INT
-);
+
 
 -- Table for activities
 CREATE TABLE activities (
@@ -80,12 +76,33 @@ CREATE TABLE treasures (
   hidden BOOLEAN
 );
 
--- Table for my_treasures
-CREATE TABLE my_treasures (
+CREATE TABLE users_events (
   id SERIAL PRIMARY KEY,
-  event_id INT,
+  user_id INT,
+  event_id INT
+);
+
+-- CREATE TABLE events_questions (
+--   id SERIAL PRIMARY KEY,
+--   event_id INT,
+--   question_id INT
+-- );
+
+-- CREATE TABLE users_questions (
+--   id SERIAL PRIMARY KEY,
+--   users_id INT,
+--   question_id INT
+-- );
+
+-- CREATE TABLE activities_questions (
+--   id SERIAL PRIMARY KEY,
+--   activity_id INT,
+--   question_id INT
+-- );
+
+CREATE TABLE users_treasures (
+  id SERIAL PRIMARY KEY,
   user_id INT,
   treasure_id INT,
-  score INT,
-  date_time TIMESTAMP
+  date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

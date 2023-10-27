@@ -2,8 +2,8 @@ package devs2blu.hackweek.eventmanager.dtos.activity;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class ActivityRequest {
     private String type;
     private String name;
     private String description;
-    private LocalDateTime date;
+    private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
     private String location;

@@ -56,8 +56,8 @@ VALUES
   (2, 3, 'token3', 5, true);
 
 -- Insert mock data into the my_treasures table
-INSERT INTO my_treasures (event_id, user_id, treasure_id, score, date_time)
+INSERT INTO users_treasures (user_id, treasure_id)
 VALUES
-  (1, 1, 1, 10, '2023-11-01 10:30:00'),
-  (1, 2, 2, 15, '2023-11-01 11:45:00'),
-  (2, 2, 3, 5, '2023-12-06 12:15:00');
+  (1, 1),
+  (1, 2),
+  (2, 2);

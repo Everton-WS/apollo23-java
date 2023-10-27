@@ -3,8 +3,8 @@ package devs2blu.hackweek.eventmanager.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -37,7 +37,7 @@ public class Activity {
     private String description;
 
     @Column(name = "date")
-    private LocalDateTime date;
+    private LocalDate date;
 
     @Column(name = "start_time", columnDefinition = "time")
     private LocalTime startTime;

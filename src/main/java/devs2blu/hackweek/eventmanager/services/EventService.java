@@ -20,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -66,12 +65,10 @@ public class EventService {
     }
 
     public List<UserResponse> getUsersByEventId(Long id) throws Exception {
-        final Set<User> users = this.eventRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.USER_NOT_FOUND)).getUsers();
+        final List<User> users = this.eventRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.USER_NOT_FOUND)).getUsers();
 
-        List<User> uList = List.of();
-        users.stream().map(uList::add);
 
-        return userMapper.toResponseList(uList);
+        return userMapper.toResponseList(users);
     }
 
     public List<TreasureResponse> getTreasuresByEvent(Long id) {

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,6 +25,9 @@ public class Treasure {
     @ManyToOne
     @JoinColumn(name = "activity_id")
     private Activity activity;
+
+    @ManyToMany(mappedBy = "treasures")
+    private List<User> users;
 
     private String token;
 
