@@ -29,4 +29,7 @@ public class ErrorMessages {
 
     // Speaker Error Messages
     public final String SPEAKER_NOT_FOUND = "Palestrante não foi encontrado";
+
+    // Speaker Error Messages
+    public final String QUESTION_NOT_FOUND = "Pergunta não foi encontrada";
 }

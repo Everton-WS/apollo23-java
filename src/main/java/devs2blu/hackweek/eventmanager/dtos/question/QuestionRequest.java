@@ -20,7 +20,6 @@ public class QuestionRequest {
     private Long activityId;
 
     @NotNull(message = "O Id do palestrante não pode ser nulo")
-    @NotBlank(message = "O Id do palestrante não pode ser vazio")
     @JsonProperty("speaker_id")
     private Long speakerId;
 
@@ -28,6 +27,7 @@ public class QuestionRequest {
     @NotBlank(message = "O texto da pergunta não pode ser nulo")
     @JsonProperty("question_text")
     private String questionText;
+
 
     private Boolean approved;
 

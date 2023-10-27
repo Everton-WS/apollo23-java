@@ -1,7 +1,6 @@
 package devs2blu.hackweek.eventmanager.dtos.question;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import lombok.*;
 
 @Getter
@@ -17,5 +16,5 @@ public class QuestionResponse {
 
     private Boolean approved;
 
-    private UserResponse user;
+    private QuestionUserResponse user;
 }
