@@ -12,6 +12,6 @@ public class UserResponse {
     private Long id;
     private String name;
     private String email;
-    private String password;
     private String mobile;
+    // TODO -> Passar array de EventResposneDTo
 }

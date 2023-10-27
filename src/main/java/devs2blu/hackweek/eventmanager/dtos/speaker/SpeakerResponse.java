@@ -11,6 +11,7 @@ import lombok.*;
 public class SpeakerResponse {
     private Long id;
 
+    @JsonProperty("event_id")
     private Long eventId;
 
     private String name;

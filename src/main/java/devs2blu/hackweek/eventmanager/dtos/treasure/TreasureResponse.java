@@ -1,5 +1,6 @@
 package devs2blu.hackweek.eventmanager.dtos.treasure;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 @Getter
@@ -13,6 +14,8 @@ public class TreasureResponse {
     private String token;
     private Boolean hidden;
 
+    @JsonProperty("event_id")
     private Long eventId;
+    @JsonProperty("activity_id")
     private Long activityId;
 }
