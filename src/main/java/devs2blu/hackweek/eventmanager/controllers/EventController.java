@@ -4,6 +4,7 @@ import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventRequest;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
+import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
 import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.services.EventService;
@@ -82,6 +83,10 @@ public class EventController {
         return ResponseEntity.ok(this.eventService.getTreasuresByEvent(id));
     }
 
+    @GetMapping("/{id}/questions")
+    public ResponseEntity<List<QuestionResponse>> findQuestionsByEvent(@PathVariable Long id) {
+        return ResponseEntity.ok(this.eventService.getQuestionsByEventId(id));
+    }
 
     @Operation(summary = "Create New Event",
         responses = {

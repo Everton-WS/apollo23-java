@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalTime;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,6 +27,18 @@ public class Activity {
     @ManyToOne
     @JoinColumn(name = "speaker_id")
     private Speaker speaker;
+
+    @OneToMany
+    private List<Question> questions;
+
+    @OneToMany(mappedBy = "activity")
+    private List<Treasure> treasures;
+
+    @ManyToMany(
+        fetch = FetchType.EAGER,
+        cascade = CascadeType.ALL,
+        mappedBy = "activities")
+    private List<User> users;
 
     @Column(nullable = false)
     private String type;

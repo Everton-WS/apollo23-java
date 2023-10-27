@@ -1,6 +1,7 @@
 package devs2blu.hackweek.eventmanager.services;
 
 import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
+import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
@@ -12,6 +13,7 @@ import devs2blu.hackweek.eventmanager.entities.User;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.QuestionRepository;
 import devs2blu.hackweek.eventmanager.repositories.UserRepository;
+import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.QuestionMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
@@ -32,6 +34,7 @@ public class UserService {
     private final EventMapper eventMapper;
     private final TreasureMapper treasureMapper;
     private final QuestionMapper questionMapper;
+    private final ActivityMapper activityMapper;
 
     public List<UserResponse> getAllUsersWithEvents() {
         return userMapper.toResponseList(userRepository.findAllWithEvents());
@@ -58,6 +61,13 @@ public class UserService {
             .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));  
 
         return treasureMapper.toResponseList(user.getTreasures());
+    }
+
+        public List<ActivityResponse> getUserActivities(Long id) {
+        User user = userRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));  
+
+        return activityMapper.toResponseList(user.getActivities());
     }
 
     public List<QuestionResponse> getUserQuestions(Long id) {

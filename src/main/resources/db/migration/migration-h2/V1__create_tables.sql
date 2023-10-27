@@ -82,23 +82,11 @@ CREATE TABLE users_events (
   event_id INT
 );
 
--- CREATE TABLE events_questions (
---   id SERIAL PRIMARY KEY,
---   event_id INT,
---   question_id INT
--- );
-
--- CREATE TABLE users_questions (
---   id SERIAL PRIMARY KEY,
---   users_id INT,
---   question_id INT
--- );
-
--- CREATE TABLE activities_questions (
---   id SERIAL PRIMARY KEY,
---   activity_id INT,
---   question_id INT
--- );
+CREATE TABLE users_activities (
+  id SERIAL PRIMARY KEY,
+  user_id INT,
+  activity_id INT
+);
 
 CREATE TABLE users_treasures (
   id SERIAL PRIMARY KEY,

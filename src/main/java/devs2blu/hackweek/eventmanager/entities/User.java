@@ -34,6 +34,16 @@ public class User {
     private List<Event> events;
 
         @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch=FetchType.EAGER)
+    @JoinTable(
+            name = "users_activities",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id")
+    )
+    private List<Activity> activities;
+
+        @ManyToMany(
                 cascade = CascadeType.ALL,
                 fetch=FetchType.EAGER)
         @JoinTable(

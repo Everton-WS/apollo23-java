@@ -4,7 +4,10 @@ import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityRequest;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
+import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerResponse;
+import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
+import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.entities.Activity;
 import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.entities.Speaker;
@@ -13,7 +16,10 @@ import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
 import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
+import devs2blu.hackweek.eventmanager.utils.mappers.QuestionMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.SpeakerMapper;
+import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
+import devs2blu.hackweek.eventmanager.utils.mappers.UserMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,6 +36,9 @@ public class ActivityService {
     private final ActivityMapper activityMapper;
     private final EventMapper eventMapper;
     private final SpeakerMapper speakerMapper;
+    private final QuestionMapper questionMapper;
+    private final TreasureMapper treasureMapper;
+    private final UserMapper userMapper;
 
     public List<ActivityResponse> findAllActivities() {
         return activityMapper.toResponseList(this.activityRepository.findAll());
@@ -52,6 +61,25 @@ public class ActivityService {
         var a = this.activityRepository.findById(activityId).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));
 
         return speakerMapper.toResponse(a.getSpeaker());
+    }
+
+    public List<QuestionResponse> findQuestionsByActivityId(Long id) throws Exception {
+        var a = this.activityRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));      
+        
+        return questionMapper.toResponseList(a.getQuestions());
+    }
+
+    public List<TreasureResponse> findTreasuresByActivityId(Long id) throws Exception {
+        var a = this.activityRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));      
+        
+        return treasureMapper.toResponseList(a.getTreasures());
+    }
+
+
+    public List<UserResponse> findUsersByActivityId(Long id) throws Exception {
+        var a = this.activityRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));      
+        
+        return userMapper.toResponseList(a.getUsers());
     }
 
     public ActivityResponse createActivity(ActivityRequest aRequest) {

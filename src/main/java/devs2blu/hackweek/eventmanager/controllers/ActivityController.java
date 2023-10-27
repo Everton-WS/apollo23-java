@@ -3,7 +3,10 @@ package devs2blu.hackweek.eventmanager.controllers;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityRequest;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
+import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerResponse;
+import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
+import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.services.ActivityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -61,6 +64,21 @@ public class ActivityController {
     @GetMapping("{id}/event")
     public ResponseEntity<EventResponse> getActivityEvent(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(this.activityService.findEventActivity(id));
+    }
+
+    @GetMapping("/{id}/questions")
+    public ResponseEntity<List<QuestionResponse>> getQuestionsByActivity(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.findQuestionsByActivityId(id));
+    }
+
+    @GetMapping("/{id}/treasures")
+    public ResponseEntity<List<TreasureResponse>> getTreasuresByActivity(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.findTreasuresByActivityId(id));
+    }
+
+    @GetMapping("/{id}/users")
+    public ResponseEntity<List<UserResponse>> getUsersByActivity(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.findUsersByActivityId(id));
     }
 
     @Operation(summary = "Create an Activity",

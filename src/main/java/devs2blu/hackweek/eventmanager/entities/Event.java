@@ -48,5 +48,8 @@ public class Event {
     private Set<Activity> activities = new HashSet<>();
 
     @OneToMany(mappedBy = "event")
+    private List<Question> questions;
+
+    @OneToMany(mappedBy = "event")
     private List<Treasure> treasures;
 }

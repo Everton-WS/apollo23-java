@@ -10,13 +10,6 @@ VALUES
   ('user', 'user@apollo23.com', '123-456-7890', 'password1'),
   ('admin', 'admin@apollo23.com', '987-654-3210', 'password2');
 
--- Insert mock data into the users_events table
-INSERT INTO users_events (user_id, event_id)
-VALUES
-  (1, 1),
-  (1, 2),
-  (2, 1),
-  (2, 2);
 
 -- Insert mock data into the speakers table
 INSERT INTO speakers (event_id, name, social_media, mini_bio)
@@ -54,6 +47,21 @@ VALUES
   (1, 1, 'token1', 10, false),
   (1, 2, 'token2', 15, true),
   (2, 3, 'token3', 5, true);
+
+
+-- Insert mock data into the users_events table
+INSERT INTO users_events (user_id, event_id)
+VALUES
+  (1, 1),
+  (1, 2),
+  (2, 1),
+  (2, 2);
+
+INSERT INTO users_activities (user_id, activity_id)
+VALUES
+  (1, 1),
+  (1, 2),
+  (2, 1);
 
 -- Insert mock data into the my_treasures table
 INSERT INTO users_treasures (user_id, treasure_id)

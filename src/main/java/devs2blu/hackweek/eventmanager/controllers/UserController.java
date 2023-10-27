@@ -1,6 +1,7 @@
 package devs2blu.hackweek.eventmanager.controllers;
 
 import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
+import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
@@ -62,6 +63,11 @@ public class UserController {
     @GetMapping("/{id}/events")
     public ResponseEntity<List<EventResponse>> getEventsByUser(@PathVariable Long id) {
         return ResponseEntity.ok(this.userService.getUserEvents(id));
+    }
+
+    @GetMapping("/{id}/activities")
+    public ResponseEntity<List<ActivityResponse>> getActivitiesByUser(@PathVariable Long id) {
+        return ResponseEntity.ok(this.userService.getUserActivities(id));
     }
 
     @GetMapping("/{id}/treasures")

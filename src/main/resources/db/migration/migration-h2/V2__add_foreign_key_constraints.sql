@@ -12,11 +12,7 @@ ALTER TABLE treasures ADD CONSTRAINT fk_treasures_event FOREIGN KEY (event_id) R
 ALTER TABLE treasures ADD CONSTRAINT fk_treasures_activity FOREIGN KEY (activity_id) REFERENCES activities (id);
 ALTER TABLE users_events ADD CONSTRAINT fk_users_events_event FOREIGN KEY (event_id) REFERENCES events (id);
 ALTER TABLE users_events ADD CONSTRAINT fk_users_events_user FOREIGN KEY (user_id) REFERENCES users (id);
--- ALTER TABLE events_questions ADD CONSTRAINT fk_events_questions_event FOREIGN KEY (event_id) REFERENCES events (id);
--- ALTER TABLE events_questions ADD CONSTRAINT fk_events_questions_question FOREIGN KEY (question_id) REFERENCES questions (id);
--- ALTER TABLE activities_questions ADD CONSTRAINT fk_activites_questions_activity FOREIGN KEY (activity_id) REFERENCES activites (id);
--- ALTER TABLE activites_questions ADD CONSTRAINT fk_activites_questions_question FOREIGN KEY (question_id) REFERENCES questions (id);
--- ALTER TABLE users_questions ADD CONSTRAINT fk_users_questions_user FOREIGN KEY (user_id) REFERENCES users (id);
--- ALTER TABLE users_questions ADD CONSTRAINT fk_users_questions_question FOREIGN KEY (question_id) REFERENCES questions (id);
+ALTER TABLE users_activities ADD CONSTRAINT fk_users_activities_activity FOREIGN KEY (activity_id) REFERENCES activities (id);
+ALTER TABLE users_activities ADD CONSTRAINT fk_users_activities_user FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE users_treasures ADD CONSTRAINT fk_my_treasures_user FOREIGN KEY (user_id) REFERENCES users (id);
 ALTER TABLE users_treasures ADD CONSTRAINT fk_my_treasures_treasure FOREIGN KEY (treasure_id) REFERENCES treasures (id);
