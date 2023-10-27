@@ -18,5 +18,8 @@ public class TreasureRequest {
     @NotBlank(message = "O token não pode estar em branco")
     private String token;
 
+    private Long eventId;
+    private Long activityId;
+
     private Boolean hidden;
 }

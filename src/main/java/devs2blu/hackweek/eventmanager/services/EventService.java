@@ -6,6 +6,7 @@ import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventRequest;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
+import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
 import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.entities.Activity;
 import devs2blu.hackweek.eventmanager.entities.Event;
@@ -14,6 +15,7 @@ import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
+import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.UserMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ public class EventService {
     private final EventMapper eventMapper;
     private final ActivityMapper activityMapper;
     private final UserMapper userMapper;
+    private final TreasureMapper treasureMapper;
 
     public List<EventResponse> getAllEvents() {
         List<Event> events = this.eventRepository.findAll();
@@ -74,6 +77,12 @@ public class EventService {
         users.stream().map(uList::add);
 
         return userMapper.toResponseList(uList);
+    }
+
+    public List<TreasureResponse> getTreasuresByEvent(Long id) {
+        Event e = this.eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.ID_NOT_FOUND));
+
+        return treasureMapper.toResponseList(e.getTreasures());
     }
 
 }

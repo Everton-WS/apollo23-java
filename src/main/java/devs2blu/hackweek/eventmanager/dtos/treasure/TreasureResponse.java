@@ -12,4 +12,7 @@ public class TreasureResponse {
     private Integer score;
     private String token;
     private Boolean hidden;
+
+    private Long eventId;
+    private Long activityId;
 }

@@ -6,6 +6,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -48,4 +49,7 @@ public class Event {
 
     // @OneToMany(mappedBy = "event")
     // private Set<Message> messages = new HashSet<>();
+
+    @OneToMany(mappedBy = "event")
+    private List<Treasure> treasures;
 }
