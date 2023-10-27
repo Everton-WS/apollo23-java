@@ -1,7 +1,5 @@
 package devs2blu.hackweek.eventmanager.services;
 
-import devs2blu.hackweek.eventmanager.builders.ActivityBuilder;
-import devs2blu.hackweek.eventmanager.builders.EventBuilder;
 import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventRequest;
@@ -19,10 +17,8 @@ import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.UserMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -56,12 +52,11 @@ public class EventService {
         return eventMapper.toResponse(newEvent);
     }
 
-    public EventResponse deleteEventById(Long id) {
-        Event e = this.eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.ID_NOT_FOUND));
-
-        this.eventRepository.delete(e);
-
-        return eventMapper.toResponse(e);
+    public void deleteEventById(Long id) {
+        if (!eventRepository.existsById(id)) {
+            throw new EntityNotFoundException(ErrorMessages.EVENT_NOT_FOUND);
+        }
+        eventRepository.deleteById(id);
     }
 
     public List<ActivityResponse> getActivitiesByEventId(Long id) {

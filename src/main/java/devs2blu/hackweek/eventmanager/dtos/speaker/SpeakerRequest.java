@@ -24,6 +24,5 @@ public class SpeakerRequest {
     private String socialMedia;
 
     @NotNull(message = "O Id do evento não pode ser nulo")
-    @NotBlank(message = "O Id do evento não pode ser vazio")
     private Long eventId;
 }

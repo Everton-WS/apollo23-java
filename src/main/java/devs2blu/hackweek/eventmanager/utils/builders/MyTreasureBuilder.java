@@ -1,4 +1,4 @@
-package devs2blu.hackweek.eventmanager.builders;
+package devs2blu.hackweek.eventmanager.utils.builders;
 
 import devs2blu.hackweek.eventmanager.dtos.myTreasure.MyTreasureRequest;
 import devs2blu.hackweek.eventmanager.entities.MyTreasure;

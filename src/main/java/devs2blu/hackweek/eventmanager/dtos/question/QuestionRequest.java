@@ -12,12 +12,10 @@ import lombok.*;
 @AllArgsConstructor
 public class QuestionRequest {
     @NotNull(message = "O Id do evento não pode ser nulo")
-    @NotBlank(message = "O Id do evento não pode ser vazio")
     @JsonProperty("event_id")
     private Long eventId;
 
     @NotNull(message = "O Id da atividade não pode ser nulo")
-    @NotBlank(message = "O Id da atividade não pode ser vazio")
     @JsonProperty("activity_id")
     private Long activityId;
 

@@ -1,6 +1,4 @@
-package devs2blu.hackweek.eventmanager.builders;
-
-import java.sql.Timestamp;
+package devs2blu.hackweek.eventmanager.utils.builders;
 
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityRequest;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;

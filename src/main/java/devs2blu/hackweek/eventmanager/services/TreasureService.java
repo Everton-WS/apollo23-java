@@ -1,7 +1,5 @@
 package devs2blu.hackweek.eventmanager.services;
 
-import org.springframework.stereotype.Service;
-
 import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
@@ -13,8 +11,12 @@ import devs2blu.hackweek.eventmanager.repositories.TreasureRepository;
 import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -50,24 +52,22 @@ public class TreasureService {
     }
 
     public TreasureResponse createTreasure(TreasureRequest tRequest) throws Exception {
-        System.out.println(tRequest.getEventId());
         var e = this.eventRepository.findById(tRequest.getEventId()).orElseThrow(() -> new Exception(ErrorMessages.EVENT_NOT_FOUND));
         var activity = this.activityRepository.findById(tRequest.getActivityId()).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));
 
-        var aEvent = e.getActivities().stream().filter((a) -> a.getId() == activity.getId()).findFirst();
+        var aEvent = e.getActivities().stream().filter(a -> Objects.equals(a.getId(), activity.getId())).findFirst();
 
-        if (!aEvent.isPresent()) throw new Exception("Activity is not part of Event");
+        if (aEvent.isEmpty()) throw new Exception("Activity is not part of Event");
 
         var newTreasure = this.treasureRepository.save(treasureMapper.toEntity(tRequest));
 
         return treasureMapper.toResponse(newTreasure);
     }
 
-    public TreasureResponse deleteTreasure(Long id) throws Exception {
-        var t = this.treasureRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.TREASURE_NOT_FOUND));
-
-        this.treasureRepository.delete(t);
-
-        return treasureMapper.toResponse(t);
+    public void deleteTreasure(Long id) {
+        if (!treasureRepository.existsById(id)) {
+            throw new EntityNotFoundException((ErrorMessages.TREASURE_NOT_FOUND));
+        }
+        treasureRepository.deleteById(id);
     }
 }

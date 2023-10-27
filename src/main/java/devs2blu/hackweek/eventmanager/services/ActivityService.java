@@ -1,6 +1,5 @@
 package devs2blu.hackweek.eventmanager.services;
 
-import devs2blu.hackweek.eventmanager.builders.ActivityBuilder;
 import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityRequest;
 import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
@@ -12,14 +11,15 @@ import devs2blu.hackweek.eventmanager.entities.Speaker;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
+import devs2blu.hackweek.eventmanager.utils.builders.ActivityBuilder;
 import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
 import devs2blu.hackweek.eventmanager.utils.mappers.SpeakerMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -61,7 +61,7 @@ public class ActivityService {
 
         Activity aEntity = ActivityBuilder.activityRequestToActivityEntity(aRequest);
         aEntity.setEvent(e);
-        if (s.isPresent()) aEntity.setSpeaker(s.get());
+        s.ifPresent(aEntity::setSpeaker);
 
         var newActivity = activityRepository.save(aEntity);
 
@@ -69,11 +69,10 @@ public class ActivityService {
             
     }
 
-    public ActivityResponse deleteActivity(Long activityId) throws Exception {
-        var a = this.activityRepository.findById(activityId).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));
-
-        this.activityRepository.delete(a);
-
-        return activityMapper.toResponse(a);
+    public void deleteActivity(Long activityId) {
+        if (!activityRepository.existsById(activityId)) {
+            throw new EntityNotFoundException(ErrorMessages.ACTIVITY_NOT_FOUND);
+        }
+        eventRepository.deleteById(activityId);
     }
 }
