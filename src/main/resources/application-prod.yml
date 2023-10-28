@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jbdc:postgresql://${URL}/${DATABASE}
+    url: jdbc:postgresql://${URL}/${DATABASE}
     username: ${USER}
     password: ${PASSWORD}
   jpa:
@@ -11,7 +11,7 @@ spring:
         default_schema: ${SCHEMA}
         format_sql: true
   flyway:
-    url: jbdc:postgresql://${URL}/${DATABASE}
+    url: jdbc:postgresql://${URL}/${DATABASE}
     user: ${USER}
     password: ${PASSWORD}
     locations: classpath:db/migration/migration-postgres
