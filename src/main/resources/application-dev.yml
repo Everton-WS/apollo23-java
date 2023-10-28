@@ -1,18 +1,19 @@
 spring:
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-      path: /h2-console
+  datasource:
+    url: ${LOCAL_URL}:${LOCAL_PORT}/${DATABASE}
+    username: ${LOCAL_USERNAME}
+    password: ${LOCAL_PASSWORD}
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
     properties:
       hibernate:
+        default_schema: event_manager
         format_sql: true
-  datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: ''
-    driver-class-name: org.h2.Driver
   flyway:
-    locations: classpath:db/migration/migration-h2
+    url: ${LOCAL_URL}:${LOCAL_PORT}/${DATABASE}
+    username: ${LOCAL_USERNAME}
+    password: ${LOCAL_PASSWORD}
+    locations: classpath:db/migration/migration-postgres
+    schemas: ${SCHEMA}
+
