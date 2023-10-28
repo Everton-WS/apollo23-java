@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Set environment variable for build
-        run: echo "PROFILE=dev" >> $GITHUB_ENV
+        run: echo "PROFILE=test" >> $GITHUB_ENV
 
       - name: Build with Maven
         run: mvn clean package

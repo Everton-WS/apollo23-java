@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>devs2blu.hackweek</groupId>
-	<artifactId>event-manager</artifactId>
+	<artifactId>event_manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>event-manager</name>
+	<name>event_manager</name>
 	<description>MVP for an event manager system</description>
 	<properties>
 		<java.version>17</java.version>

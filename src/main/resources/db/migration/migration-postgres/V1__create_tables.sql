@@ -1,5 +1,5 @@
 -- Table for events
-CREATE TABLE events (
+CREATE TABLE event_manager.events (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   website VARCHAR(255),
@@ -10,7 +10,7 @@ CREATE TABLE events (
 );
 
 -- Table for users
-CREATE TABLE users (
+CREATE TABLE event_manager.users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255),
   email VARCHAR(255) UNIQUE,
@@ -22,7 +22,7 @@ CREATE TABLE users (
 
 
 -- Table for activities
-CREATE TABLE activities (
+CREATE TABLE event_manager.activities (
   id SERIAL PRIMARY KEY,
   event_id INT,
   speaker_id INT,
@@ -36,7 +36,7 @@ CREATE TABLE activities (
 );
 
 -- Table for speakers
-CREATE TABLE speakers (
+CREATE TABLE event_manager.speakers (
   id SERIAL PRIMARY KEY,
   event_id INT,
   name VARCHAR(255),
@@ -45,7 +45,7 @@ CREATE TABLE speakers (
 );
 
 -- Table for messages
-CREATE TABLE messages (
+CREATE TABLE event_manager.messages (
   id SERIAL PRIMARY KEY,
   event_id INT,
   sender_id INT,
@@ -55,7 +55,7 @@ CREATE TABLE messages (
 );
 
 -- Table for questions
-CREATE TABLE questions (
+CREATE TABLE event_manager.questions (
   id SERIAL PRIMARY KEY,
   event_id INT,
   activity_id INT,
@@ -67,7 +67,7 @@ CREATE TABLE questions (
 );
 
 -- Table for treasures
-CREATE TABLE treasures (
+CREATE TABLE event_manager.treasures (
   id SERIAL PRIMARY KEY,
   event_id INT,
   activity_id INT,
@@ -76,19 +76,19 @@ CREATE TABLE treasures (
   hidden BOOLEAN
 );
 
-CREATE TABLE users_events (
+CREATE TABLE event_manager.users_events (
   id SERIAL PRIMARY KEY,
   user_id INT,
   event_id INT
 );
 
-CREATE TABLE users_activities (
+CREATE TABLE event_manager.users_activities (
   id SERIAL PRIMARY KEY,
   user_id INT,
   activity_id INT
 );
 
-CREATE TABLE users_treasures (
+CREATE TABLE event_manager.users_treasures (
   id SERIAL PRIMARY KEY,
   user_id INT,
   treasure_id INT,
