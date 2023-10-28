@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${URL}:${PORT}/${DATABASE}
+    url: ${URL}/${DATABASE}
     username: ${USER}
     password: ${PASSWORD}
   jpa:
