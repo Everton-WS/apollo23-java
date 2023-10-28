@@ -1,10 +1,12 @@
 package devs2blu.hackweek.eventmanager.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Getter
@@ -15,6 +17,7 @@ import lombok.Setter;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(name = "Question ID", example = "1")
     private Long id;
 
     @ManyToOne
@@ -26,15 +29,35 @@ public class Question {
     private Activity activity;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "speaker_id")
     private Speaker speaker;
 
-    @Column(name = "question", columnDefinition = "text")
-    private String question;
+    @Column(name = "question_text", columnDefinition = "text")
+    @Schema(name = "Question text", example = "What's your question?")
+    private String questionText;
 
     @Column(name = "approved")
-    private boolean approved;
+    @ColumnDefault("true")
+    @Schema(name = "Approved", example = "true")
+    private Boolean approved;
 
     @Column(name = "excluded")
-    private boolean excluded;
+    @ColumnDefault("false")
+    @Schema(name = "Excluded", example = "false")
+    private Boolean excluded;
+
+    // Lifecycle Callbacks
+    @PrePersist
+    public void prePersist() {
+        if (approved == null) {
+            approved = true;
+        }
+        if (excluded == null) {
+            excluded = false;
+        }
+    }
 }

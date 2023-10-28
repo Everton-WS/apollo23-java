@@ -1,15 +1,11 @@
 spring:
   profiles:
-    active: dev
+    active: ${PROFILE}
   jpa:
     show-sql: true
     properties:
       hibernate:
-        default_schema: event-manager
         format_sql: true
-    schemas: event-manager
-  flyway:
-    schemas: event-manager
   endpoint:
     health:
       show-details: always
@@ -23,5 +19,5 @@ server:
 springdoc:
   swagger-ui:
     path: /swagger-ui
-  version: 0.0.1
+  version: 1.0.0
 

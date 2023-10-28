@@ -15,12 +15,13 @@ import lombok.Setter;
 public class Speaker {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
 
+    @Column(nullable = false)
     private String name;
 
     @Column(name = "social_media")

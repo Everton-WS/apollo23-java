@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -25,8 +27,20 @@ public class Treasure {
     @JoinColumn(name = "activity_id")
     private Activity activity;
 
+    @ManyToMany(mappedBy = "treasures")
+    private List<User> users;
+
     private String token;
 
     @Column(name = "score")
     private Integer score;
+
+    @Column(name = "hidden", columnDefinition = "boolean")
+    private Boolean hidden;
+
+    // Lifecycle Callbacks
+    @PrePersist
+    public void prePersist() {
+        hidden = hidden != null && hidden;
+    }
 }

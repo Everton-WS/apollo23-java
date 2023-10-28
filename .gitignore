@@ -1,5 +1,5 @@
 # General
-.target/
+/target
 !.mvn/wrapper/maven-wrapper.jar
 # Exclude target directories under src/main and src/test
 !**/src/main/**/target/

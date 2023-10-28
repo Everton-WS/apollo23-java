@@ -29,14 +29,40 @@ Incluir uma camada de gameficação e iteração ao se inscrever em uma palestra
 
 ## [Repositório Flutter](https://github.com/Everton-WS/apollo23-flutter)
 
+---
+
 ## Instalação e Uso
 
-*TODO*
+### Executando o Projeto Maven Localmente
+
+Siga os passos abaixo para executar o projeto Maven localmente. Certifique-se de que o Java 17 ou superior esteja instalado em seu sistema.
+
+1. **Java Development Kit (JDK) 17 ou superior**
+    - Verifique se o JDK 17 está configurado em sua variável de ambiente `JAVA_HOME`.
+    - Caso não, [siga esses passos para instalação](docs/readmes/JdkInstallation.md).
+2. **Clone o Repositório:**
+   ```shell
+   git clone https://github.com/Everton-WS/apollo23-java.git
+   ```
+3. **Acesse a pasta do projeto**
+   ```shell
+   cd apollo23-java
+   ```
+4. **Execute o Projeto com o Maven Wrapper**
+   O projeto já inclui o Maven Wrapper, que permite que você execute comandos Maven sem a necessidade de instalar o Maven globalmente. Execute o seguinte comando para construir e executar o projeto:
+    ```shell
+   ./mvnw clean package spring-boot:run
+   ```
+5. **Acesse a Aplicação** em `http://localhost:8080/api`
+    
+---
 
 ## Documentação
 
-*TODO*
+### Modelo Entidade-Relacionamento
+![MER_Diagram](docs/diagrams/MER/MER_1.7_Apollo23 20231024.png)
 
+---
 
 ## Requisitos
 

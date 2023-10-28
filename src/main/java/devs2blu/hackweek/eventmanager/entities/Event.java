@@ -1,18 +1,17 @@
 package devs2blu.hackweek.eventmanager.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "events")
@@ -21,26 +20,36 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String website;
 
+    @Column(nullable = false)
     private String city;
 
+    @Column(nullable = false)
     private String state;
 
-    @ManyToMany(mappedBy = "events")
-    private Set<User> users;
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            mappedBy = "events")
+    private List<User> users;
 
     @Column(name = "end_date")
-    private Timestamp endDate;
+    private LocalDate endDate;
 
     @Column(name = "start_date")
-    private Timestamp startDate;
+    private LocalDate startDate;
 
     @OneToMany(mappedBy = "event")
-    private List<Activity> activities;
+    private Set<Activity> activities = new HashSet<>();
 
     @OneToMany(mappedBy = "event")
-    private List<Message> messages;
+    private List<Question> questions;
+
+    @OneToMany(mappedBy = "event")
+    private List<Treasure> treasures;
 }

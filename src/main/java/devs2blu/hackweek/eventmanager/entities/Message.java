@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -35,6 +35,12 @@ public class Message {
     private String text;
 
     @Column(name = "date_time")
-    private Timestamp dateTime;
+    private LocalDateTime dateTime;
+
+    // Lifecycle Callbacks
+    @PrePersist
+    public void prePersist() {
+        dateTime = LocalDateTime.now();
+    }
 }
 

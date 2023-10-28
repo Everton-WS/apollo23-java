@@ -1,14 +1,14 @@
 package devs2blu.hackweek.eventmanager.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,30 +19,52 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     // Creates the join table without the need to create a separate entity
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch=FetchType.EAGER)
     @JoinTable(
             name = "users_events",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "event_id")
     )
-    private Set<Event> events;
+    private List<Event> events;
 
-    @Column(name = "speaker_id")
-    private Integer speakerId;
+        @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch=FetchType.EAGER)
+    @JoinTable(
+            name = "users_activities",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "activity_id")
+    )
+    private List<Activity> activities;
 
-    private String type;
+        @ManyToMany(
+                cascade = CascadeType.ALL,
+                fetch=FetchType.EAGER)
+        @JoinTable(
+                name = "users_treasures",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "treasure_id")
+        )
+    private List<Treasure> treasures;
+
+    @JsonIgnore
+    @OneToMany
+    private List<Question> questions;
+
+    @Column(nullable = false)
     private String name;
 
-    private LocalDate date;
+    @Email
+    @Column(unique = true)
+    private String email;
 
-    @Column(name = "start_time")
-    private Timestamp startTime;
+    @Column(nullable = false)
+    private String password;
 
-    @Column(name = "end_time")
-    private Timestamp endTime;
-
-    private String location;
+    private String mobile;
 }
