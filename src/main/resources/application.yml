@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: ${PROFILE}
   jpa:
     show-sql: true
     properties:

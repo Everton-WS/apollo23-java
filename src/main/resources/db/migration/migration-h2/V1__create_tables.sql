@@ -18,9 +18,6 @@ CREATE TABLE users (
   password VARCHAR(255)
 );
 
--- Table for users_events
-
-
 -- Table for activities
 CREATE TABLE activities (
   id SERIAL PRIMARY KEY,
@@ -76,18 +73,21 @@ CREATE TABLE treasures (
   hidden BOOLEAN
 );
 
+-- Table for users_events
 CREATE TABLE users_events (
   id SERIAL PRIMARY KEY,
   user_id INT,
   event_id INT
 );
 
+-- Table for users_activities
 CREATE TABLE users_activities (
   id SERIAL PRIMARY KEY,
   user_id INT,
   activity_id INT
 );
 
+-- Table for users_treasures
 CREATE TABLE users_treasures (
   id SERIAL PRIMARY KEY,
   user_id INT,

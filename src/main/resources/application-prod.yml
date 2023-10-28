@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/event-manager
-    username: postgres
-    password: postgres
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
@@ -11,8 +11,8 @@ spring:
         default_schema: event-manager
         format_sql: true
   flyway:
-    url: jdbc:postgresql://localhost:5432/event-manager
-    user: postgres
-    password: postgres
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}
     locations: classpath:db/migration/migration-postgres
     schemas: event-manager
