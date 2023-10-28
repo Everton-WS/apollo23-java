@@ -90,6 +90,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.userService.createUser(uRequest));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody UserRequest uRequest) {
+        return ResponseEntity.ok(this.userService.updateUser(id, uRequest));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<UserResponse> deleteUser(@PathVariable Long id) {
         return ResponseEntity.ok(this.userService.deleteUser(id));

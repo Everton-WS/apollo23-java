@@ -23,6 +23,8 @@ public class UserRelationService {
         var e = this.eventRepository.findById(eventId).orElseThrow(() -> new Exception(ErrorMessages.EVENT_NOT_FOUND));
         var u = this.userRepository.findById(userId).orElseThrow(() -> new Exception(ErrorMessages.USER_NOT_FOUND));
 
+        if (u.getEvents().stream().filter((event) -> event.getId() == eventId).findFirst() != null) return false;
+
         var events = u.getEvents();
         events.add(e);
 
@@ -36,6 +38,8 @@ public class UserRelationService {
     public Boolean addActivity(Long userId, Long activityId) throws Exception {
         var a = this.activityRepository.findById(activityId).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));
         var u = this.userRepository.findById(userId).orElseThrow(() -> new Exception(ErrorMessages.USER_NOT_FOUND));
+
+        if (u.getActivities().stream().filter((activity) -> activity.getId() == activityId).findFirst() != null) return false;
 
         var activities = u.getActivities();
         activities.add(a);
@@ -51,6 +55,8 @@ public class UserRelationService {
     public Boolean addTreasure(Long userId, Long treasureId) throws Exception {
         var t = this.treasureRepository.findById(treasureId).orElseThrow(() -> new Exception(ErrorMessages.TREASURE_NOT_FOUND));
         var u = this.userRepository.findById(userId).orElseThrow(() -> new Exception(ErrorMessages.USER_NOT_FOUND));
+
+        if (u.getTreasures().stream().filter((treasure) -> treasure.getId() == treasureId).findFirst() != null) return false;
 
         var treasures = u.getTreasures();
         treasures.add(t);

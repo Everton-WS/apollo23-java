@@ -59,13 +59,10 @@ public class SpeakerController {
     @ApiResponse(responseCode = "200", description = "Successful operation",
             content = @Content(schema = @Schema(implementation = SpeakerResponse.class)))
     @ApiResponse(responseCode = "404", description = "Speaker not found")
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<SpeakerResponse> update(@PathVariable Long id, @RequestBody @Valid SpeakerRequest request) {
-        SpeakerResponse updatedSpeaker = speakerService.update(id, request);
-        if (updatedSpeaker == null) {
-            throw new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND);
-        }
-        return ResponseEntity.ok(updatedSpeaker);
+
+        return ResponseEntity.ok(this.speakerService.update(id, request));
     }
 
     @Operation(summary = "Delete Speaker", description = "Delete a speaker by ID")

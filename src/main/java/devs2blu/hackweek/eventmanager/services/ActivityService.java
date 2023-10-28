@@ -14,6 +14,7 @@ import devs2blu.hackweek.eventmanager.entities.Speaker;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
+import devs2blu.hackweek.eventmanager.utils.UpdateEntities;
 import devs2blu.hackweek.eventmanager.utils.mappers.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -89,6 +90,14 @@ public class ActivityService {
 
         return activityMapper.toResponse(newActivity);
             
+    }
+
+    public ActivityResponse updateActivity(ActivityRequest aRequest, Long id) throws Exception {
+        var a = this.activityRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND)); 
+
+        var updateActivity = UpdateEntities.updateActivity(aRequest, a);
+
+        return activityMapper.toResponse(this.activityRepository.save(updateActivity));
     }
 
     public void deleteActivity(Long activityId) {

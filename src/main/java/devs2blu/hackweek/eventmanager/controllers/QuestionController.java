@@ -59,13 +59,9 @@ public class QuestionController {
     @ApiResponse(responseCode = "200", description = "Successful operation",
             content = @Content(schema = @Schema(implementation = QuestionResponse.class)))
     @ApiResponse(responseCode = "404", description = "Question not found")
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<QuestionResponse> update(@PathVariable Long id, @RequestBody @Valid QuestionRequest request) {
-        QuestionResponse updatedQuestion = questionService.update(id, request);
-        if (updatedQuestion == null) {
-            throw new EntityNotFoundException(ErrorMessages.QUESTION_NOT_FOUND);
-        }
-        return ResponseEntity.ok(updatedQuestion);
+        return ResponseEntity.ok(this.questionService.update(id, request));
     }
 
     @Operation(summary = "Delete Question", description = "Delete a question by ID")

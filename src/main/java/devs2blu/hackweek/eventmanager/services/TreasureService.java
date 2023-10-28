@@ -78,22 +78,10 @@ public class TreasureService {
 
     public TreasureResponse updateTreasure(TreasureRequest tRequestUpdated, Long id) throws Exception {
         var t = this.treasureRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.TREASURE_NOT_FOUND));
-        if (tRequestUpdated.getEventId() != null && !this.eventRepository.existsById(tRequestUpdated.getEventId())) throw new Exception(ErrorMessages.EVENT_NOT_FOUND);
-        if (tRequestUpdated.getActivityId() != null && !this.activityRepository.existsById(tRequestUpdated.getActivityId())) throw new Exception(ErrorMessages.ACTIVITY_NOT_FOUND);
 
         Treasure updatedTreasure = UpdateEntities.updateTreasure(tRequestUpdated, t);
 
-        if (tRequestUpdated.getEventId() != null) {
-            var e = this.eventRepository.findById(tRequestUpdated.getEventId()).get();
-            updatedTreasure.setEvent(e);
-        }
-
-        if (tRequestUpdated.getActivityId() != null) {
-            var a = this.activityRepository.findById(tRequestUpdated.getActivityId()).get();
-            updatedTreasure.setActivity(a);
-        }
-
-        var newUpdatedT = this.treasureRepository.save(t);
+        var newUpdatedT = this.treasureRepository.save(updatedTreasure);
 
         return treasureMapper.toResponse(newUpdatedT);
     }

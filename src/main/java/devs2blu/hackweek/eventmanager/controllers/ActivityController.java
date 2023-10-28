@@ -96,6 +96,11 @@ public class ActivityController {
         }
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<ActivityResponse> updateActivity(@RequestBody ActivityRequest aRequest, @PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.activityService.updateActivity(aRequest, id));
+    }
+
     @Operation(summary = "Delete Activity",
         responses = {
             @ApiResponse(responseCode = "200", description = "Activity Successfully Deleted"),
