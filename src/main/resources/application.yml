@@ -19,5 +19,5 @@ server:
 springdoc:
   swagger-ui:
     path: /swagger-ui
-  version: 0.0.1
+  version: 1.0.0
 

@@ -12,11 +12,7 @@ import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.entities.User;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
-import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.QuestionMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.UserMapper;
+import devs2blu.hackweek.eventmanager.utils.mappers.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -46,7 +42,6 @@ public class EventService {
     }
 
     public EventResponse createEvent(EventRequest eRequest) {
-        System.out.println(eRequest.getName());
         Event e = eventMapper.toEntity(eRequest);
 
         Event newEvent = this.eventRepository.save(e);

@@ -1,10 +1,11 @@
 package devs2blu.hackweek.eventmanager.dtos.activity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerResponse;
 import lombok.*;
 
-import java.time.LocalTime;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Builder
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ActivityResponse {
     private Long id;
-    private Long speakerId; // TODO -> Abrir para SpeakerResponseDTO
+    private SpeakerResponse speakerResponse;
     @JsonProperty("event_id")
     private Long eventId;
     private String type;

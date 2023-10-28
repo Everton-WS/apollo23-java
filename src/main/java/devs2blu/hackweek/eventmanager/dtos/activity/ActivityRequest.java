@@ -2,8 +2,8 @@ package devs2blu.hackweek.eventmanager.dtos.activity;
 
 import lombok.*;
 
-import java.time.LocalTime;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter

@@ -7,23 +7,16 @@ import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
 import devs2blu.hackweek.eventmanager.dtos.user.UserRequest;
 import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
-import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.entities.Treasure;
 import devs2blu.hackweek.eventmanager.entities.User;
-import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.QuestionRepository;
 import devs2blu.hackweek.eventmanager.repositories.UserRepository;
-import devs2blu.hackweek.eventmanager.utils.mappers.ActivityMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.EventMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.QuestionMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.TreasureMapper;
-import devs2blu.hackweek.eventmanager.utils.mappers.UserMapper;
+import devs2blu.hackweek.eventmanager.utils.mappers.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -44,9 +37,7 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));
 
-        UserResponse userResponse = userMapper.toResponse(user);
-
-        return userResponse;
+        return userMapper.toResponse(user);
     }
 
     public List<EventResponse> getUserEvents(Long id) {
@@ -92,13 +83,11 @@ public class UserService {
 
     public Integer getUserScore(Long id) {
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));  
+            .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));
 
-        Integer score = user.getTreasures().stream()
+        return user.getTreasures().stream()
             .map(Treasure::getScore)
             .reduce(0, Integer::sum);
-
-        return score;
     }
 
     public UserResponse deleteUser(Long id) {
@@ -110,6 +99,9 @@ public class UserService {
         return userMapper.toResponse(user);
     }
 
-    // TODO -> getUserByEmail
-
+    public UserResponse getUserByEmail(String email){
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));
+        return userMapper.toResponse(user);
+    }
 }

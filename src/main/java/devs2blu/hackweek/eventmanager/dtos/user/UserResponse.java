@@ -1,6 +1,9 @@
 package devs2blu.hackweek.eventmanager.dtos.user;
 
+import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import lombok.*;
+
+import java.util.List;
 
 
 @Getter
@@ -13,5 +16,5 @@ public class UserResponse {
     private String name;
     private String email;
     private String mobile;
-    // TODO -> Passar array de EventResposneDTo
+    private List<EventResponse> eventResponses;
 }
