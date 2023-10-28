@@ -7,6 +7,7 @@ import devs2blu.hackweek.eventmanager.dtos.question.QuestionResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
 import devs2blu.hackweek.eventmanager.dtos.user.UserRequest;
 import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
+import devs2blu.hackweek.eventmanager.services.UserRelationService;
 import devs2blu.hackweek.eventmanager.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,6 +28,7 @@ import java.util.List;
 @Tag(name = "User Management", description = "Endpoints for managing Users")
 public class UserController {
     final UserService userService;
+    final UserRelationService userRelationService;
 
     @Operation(summary = "Get all Users",
             responses = {
@@ -91,5 +93,20 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<UserResponse> deleteUser(@PathVariable Long id) {
         return ResponseEntity.ok(this.userService.deleteUser(id));
+    }
+
+    @GetMapping("/{userId}/events/{eventId}/add")
+    public ResponseEntity<Boolean> addEventToUser(@PathVariable Long userId, @PathVariable Long eventId) throws Exception {
+        return ResponseEntity.ok(this.userRelationService.addEvent(userId, eventId));
+    }
+
+    @GetMapping("/{userId}/activities/{activityId}/add")
+    public ResponseEntity<Boolean> addActivityToUser(@PathVariable Long userId, @PathVariable Long activityId) throws Exception {
+        return ResponseEntity.ok(this.userRelationService.addActivity(userId, activityId));
+    }
+
+    @GetMapping("/{userId}/treasures/{treasureId}/add")
+    public ResponseEntity<Boolean> addTreasureToUser(@PathVariable Long userId, @PathVariable Long treasureId) throws Exception {
+        return ResponseEntity.ok(this.userRelationService.addTreasure(userId, treasureId));
     }
 }
