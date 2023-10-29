@@ -26,6 +26,7 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     container_name: backend_server
+    image: nginx_server
     ports:
       - "80:80"
       - "443:443"
