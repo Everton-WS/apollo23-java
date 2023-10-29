@@ -17,3 +17,24 @@ services:
     working_dir: /app  # Diretório de trabalho dentro do contêiner
 
     command: ["./mvnw", "spring-boot:run"]  # Comando a ser executado ao iniciar o contêiner
+
+    networks:
+      - app    
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: backend_server
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
