@@ -5,7 +5,6 @@ import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
 
 
 @Getter

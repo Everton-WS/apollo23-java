@@ -1,6 +1,5 @@
 package devs2blu.hackweek.eventmanager.services;
 
-import org.modelmapper.spi.ErrorMessage;
 import org.springframework.stereotype.Service;
 
 import devs2blu.hackweek.eventmanager.constants.ErrorMessages;

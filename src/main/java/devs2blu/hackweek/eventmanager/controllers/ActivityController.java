@@ -27,7 +27,7 @@ public class ActivityController {
 
     final ActivityService activityService;
 
-    @Operation(summary = "Get All Activities",
+    @Operation(summary = "Get All Activities", description = "Returns a List of Activities",
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation")
     })
@@ -36,7 +36,7 @@ public class ActivityController {
         return ResponseEntity.ok(this.activityService.findAllActivitiesWithSpeakers());
     }
 
-    @Operation(summary = "Get Activity By Id",
+    @Operation(summary = "Get Activity By Id", description = "Returns a Single Activity",
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation"),
             @ApiResponse(responseCode = "404", description = "Activity not found")
@@ -46,7 +46,7 @@ public class ActivityController {
         return ResponseEntity.ok(this.activityService.findById(id));
     } 
 
-    @Operation(summary = "Get Activity's Speaker",
+    @Operation(summary = "Get Activity's Speaker", description = "Returns a Single Speaker from Activity",
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation"),
             @ApiResponse(responseCode = "404", description = "Activity not found")
@@ -56,7 +56,7 @@ public class ActivityController {
         return ResponseEntity.ok(this.activityService.findSpeakerActivity(id));
     } 
 
-    @Operation(summary = "Get Activity's Event",
+    @Operation(summary = "Get Activity's Event", description = "Returns a Single Event From Activity",
         responses = {
             @ApiResponse(responseCode = "200", description = "Successful operation"),
             @ApiResponse(responseCode = "404", description = "Activity not found")
@@ -66,22 +66,37 @@ public class ActivityController {
         return ResponseEntity.ok(this.activityService.findEventActivity(id));
     }
 
+    @Operation(summary = "Get Activity's Questions", description = "Returns a List of Questions from Activity",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
     @GetMapping("/{id}/questions")
     public ResponseEntity<List<QuestionResponse>> getQuestionsByActivity(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(this.activityService.findQuestionsByActivityId(id));
     }
 
+    @Operation(summary = "Get Activity's Treasures", description = "Returns a List of Treasures from Activity",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
     @GetMapping("/{id}/treasures")
     public ResponseEntity<List<TreasureResponse>> getTreasuresByActivity(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(this.activityService.findTreasuresByActivityId(id));
     }
 
+    @Operation(summary = "Get Activity's Users", description = "Returns a List of Users from Activity",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Successful operation"),
+            @ApiResponse(responseCode = "404", description = "Activity not found")
+    })
     @GetMapping("/{id}/users")
     public ResponseEntity<List<UserResponse>> getUsersByActivity(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(this.activityService.findUsersByActivityId(id));
     }
 
-    @Operation(summary = "Create an Activity",
+    @Operation(summary = "Create Activity",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Activity Created Successfully"),
                     @ApiResponse(responseCode = "400", description = "Bad Request - Invalid Input"),
@@ -96,6 +111,11 @@ public class ActivityController {
         }
     }
 
+    @Operation(summary = "Update Activity",
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Activity Created Successfully"),
+                    @ApiResponse(responseCode = "400", description = "Bad Request - Invalid Input"),
+            })
     @PatchMapping("/{id}")
     public ResponseEntity<ActivityResponse> updateActivity(@RequestBody ActivityRequest aRequest, @PathVariable Long id) throws Exception {
         return ResponseEntity.ok(this.activityService.updateActivity(aRequest, id));

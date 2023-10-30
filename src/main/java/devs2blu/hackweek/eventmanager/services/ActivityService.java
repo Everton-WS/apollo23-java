@@ -11,7 +11,6 @@ import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.entities.Activity;
 import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.entities.Speaker;
-import devs2blu.hackweek.eventmanager.entities.User;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;

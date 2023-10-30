@@ -25,7 +25,7 @@ import java.util.List;
 public class QuestionController {
     final QuestionService questionService;
 
-    @Operation(summary = "Get all Questions", description = "Retrieve a list of all questions")
+    @Operation(summary = "Get all Questions", description = "Returns a list of all questions")
     @ApiResponse(responseCode = "200", description = "Successful operation", content = @Content(schema = @Schema(implementation = QuestionResponse.class)))
     @GetMapping
     public ResponseEntity<List<QuestionResponse>> findAll() {
@@ -33,7 +33,7 @@ public class QuestionController {
         return ResponseEntity.ok().body(questions);
     }
 
-    @Operation(summary = "Find Question by ID", description = "Retrieve a single question by ID")
+    @Operation(summary = "Get Question by Question Id", description = "Returns a Single Question by Id")
     @ApiResponse(responseCode = "200", description = "Successful operation",
             content = @Content(schema = @Schema(implementation = QuestionResponse.class)))
     @ApiResponse(responseCode = "404", description = "Question not found")

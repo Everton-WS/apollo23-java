@@ -29,6 +29,12 @@ public class SpeakerService {
                 .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND));
     }
 
+    // public EventResponse findEventById(Long id) {
+    //     var s = speakerRepository.findById(id).map(mapper::toResponse).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND));
+
+    //     return s.getEventId();
+    // }
+
     public SpeakerResponse save(SpeakerRequest request) {
         return mapper.toResponse(
                 speakerRepository.save(mapper.toEntity(request))
