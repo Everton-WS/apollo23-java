@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -30,15 +31,32 @@ public class UserService {
     private final QuestionMapper questionMapper;
     private final ActivityMapper activityMapper;
 
-    public List<UserResponse> getAllUsersWithEvents() {
-        return userMapper.toResponseList(userRepository.findAllWithEvents());
+    public List<UserResponse> findAllUsersWithEvents() {
+        List<User> users = userRepository.findAllWithEvents();
+        return users.stream()
+                .map(user -> {
+                    UserResponse userResponse = userMapper.toResponse(user);
+                    List<EventResponse> eventResponses = user.getEvents().stream()
+                            .map(eventMapper::toResponse)
+                            .toList();
+                    userResponse.setEventResponses(eventResponses);
+                    return userResponse;
+                })
+                .toList();
     }
+
 
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));
 
-        return userMapper.toResponse(user);
+        UserResponse userResponse = userMapper.toResponse(user);
+        List<EventResponse> eventResponses = user.getEvents().stream()
+                .map(eventMapper::toResponse)
+                .toList();
+        userResponse.setEventResponses(eventResponses);
+
+        return userResponse;
     }
 
     public List<EventResponse> getUserEvents(Long id) {

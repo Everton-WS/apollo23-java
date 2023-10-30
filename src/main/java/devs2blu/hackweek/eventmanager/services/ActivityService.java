@@ -11,6 +11,7 @@ import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.entities.Activity;
 import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.entities.Speaker;
+import devs2blu.hackweek.eventmanager.entities.User;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
@@ -36,14 +37,17 @@ public class ActivityService {
     private final TreasureMapper treasureMapper;
     private final UserMapper userMapper;
 
-    public List<ActivityResponse> findAllActivities() {
-        return activityMapper.toResponseList(this.activityRepository.findAll());
+    public List<ActivityResponse> findAllActivitiesWithSpeakers() {
+        List<Activity> activities = activityRepository.findAllActivitiesWithSpeakers();
+        return activities.stream()
+                .map(activityMapper::toResponseWithSpeaker)
+                .toList();
     }
 
-    public ActivityResponse findActivityById(Long id) throws Exception {
-        var a = this.activityRepository.findById(id).orElseThrow(() -> new Exception(ErrorMessages.ACTIVITY_NOT_FOUND));
-
-        return activityMapper.toResponse(a);
+    public ActivityResponse findById(Long id) {
+        Activity activity = activityRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.ACTIVITY_NOT_FOUND));
+        return activityMapper.toResponseWithSpeaker(activity);
     }
 
     public EventResponse findEventActivity(Long activityId) throws Exception {

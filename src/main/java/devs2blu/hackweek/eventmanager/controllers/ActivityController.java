@@ -33,7 +33,7 @@ public class ActivityController {
     })
     @GetMapping
     public ResponseEntity<List<ActivityResponse>> getAllActivities() {
-        return ResponseEntity.ok(this.activityService.findAllActivities());
+        return ResponseEntity.ok(this.activityService.findAllActivitiesWithSpeakers());
     }
 
     @Operation(summary = "Get Activity By Id",
@@ -43,7 +43,7 @@ public class ActivityController {
     })
     @GetMapping("/{id}")
     public ResponseEntity<ActivityResponse> getActivityById(@PathVariable Long id) throws Exception {
-        return ResponseEntity.ok(this.activityService.findActivityById(id));
+        return ResponseEntity.ok(this.activityService.findById(id));
     } 
 
     @Operation(summary = "Get Activity's Speaker",

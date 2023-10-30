@@ -14,6 +14,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class ActivityResponse {
     private Long id;
+    @JsonProperty("speaker")
     private SpeakerResponse speakerResponse;
     @JsonProperty("event_id")
     private Long eventId;
@@ -21,7 +22,9 @@ public class ActivityResponse {
     private String name;
     private String description;
     private LocalDate date;
+    @JsonProperty("start_time")
     private LocalTime startTime;
+    @JsonProperty("end_time")
     private LocalTime endTime;
     private String location;
 }
