@@ -98,6 +98,11 @@ public class EventController {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.eventService.createEvent(eRequest));
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<EventResponse> updateEvent(@RequestBody EventRequest eRequest, Long id) {
+        return ResponseEntity.ok(this.eventService.updateEvent(eRequest, id));
+    }
+
     @Operation(summary = "Delete Event",
             responses = {
                     @ApiResponse(responseCode = "204", description = "Successful operation"),

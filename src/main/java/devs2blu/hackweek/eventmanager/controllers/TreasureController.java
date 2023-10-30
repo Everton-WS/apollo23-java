@@ -4,6 +4,7 @@ import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureRequest;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
+import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.services.TreasureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -67,6 +68,11 @@ public class TreasureController {
         return ResponseEntity.ok(this.treasureService.findTreasureActivity(treasureId));         
     }
 
+    @GetMapping("/{treasureId}/users")
+    public ResponseEntity<List<UserResponse>> getUsersByTreasure(@PathVariable Long treasureId) throws Exception {
+        return ResponseEntity.ok(this.treasureService.findUsersByTreasure(treasureId));
+    }
+
     @Operation(summary = "Create New Treasure",
         responses = {
             @ApiResponse(responseCode = "201", description = "Treasure Successfully created"),
@@ -75,6 +81,11 @@ public class TreasureController {
     @PostMapping
     public ResponseEntity<TreasureResponse> createTreasure(@RequestBody TreasureRequest tRequest) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.treasureService.createTreasure(tRequest));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<TreasureResponse> updateTreasure(@RequestBody TreasureRequest tRequest, @PathVariable Long id) throws Exception {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.treasureService.updateTreasure(tRequest, id));
     }
 
     @Operation(summary = "Delete Treasure",

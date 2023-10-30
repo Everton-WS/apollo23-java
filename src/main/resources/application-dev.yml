@@ -12,7 +12,7 @@ spring:
         format_sql: true
   flyway:
     url: ${LOCAL_URL}:${LOCAL_PORT}/${DATABASE}
-    username: ${LOCAL_USERNAME}
+    user: ${LOCAL_USERNAME}
     password: ${LOCAL_PASSWORD}
     locations: classpath:db/migration/migration-postgres
     schemas: ${SCHEMA}
