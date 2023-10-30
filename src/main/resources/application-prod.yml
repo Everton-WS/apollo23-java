@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: ${URL}:${PORT}/${DATABASE}
-    username: ${CLOUD_USER}
+    url: jdbc:postgresql://${URL}/${DATABASE}
+    username: ${USER}
     password: ${PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
@@ -11,8 +11,8 @@ spring:
         default_schema: ${SCHEMA}
         format_sql: true
   flyway:
-    url: ${URL}:${PORT}/${DATABASE}
-    user: ${CLOUD_USER}
+    url: jdbc:postgresql://${URL}/${DATABASE}
+    user: ${USER}
     password: ${PASSWORD}
     locations: classpath:db/migration/migration-postgres
     schemas: ${SCHEMA}

@@ -1,0 +1,19 @@
+version: '3.9'  # Versão do Docker Compose
+
+services:
+  backend:
+    container_name: backend_app  # Nome do contêiner
+    image: backend_app:v0.0.1  # Nome da imagem do contêiner
+    build:  # Configuração de construção da imagem
+      context: .  # Diretório de contexto para o Dockerfile
+      dockerfile: Dockerfile  # Nome do Dockerfile
+
+    ports:
+      - "8000:8080"  # Mapeamento da porta do host para a porta do contêiner
+
+    env_file:
+      - .env  # Arquivo de variáveis de ambiente
+
+    working_dir: /app  # Diretório de trabalho dentro do contêiner
+
+    command: ["./mvnw", "spring-boot:run"]  # Comando a ser executado ao iniciar o contêiner
