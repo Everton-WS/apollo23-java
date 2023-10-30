@@ -45,7 +45,7 @@ public class Event {
     private LocalDate startDate;
 
     @OneToMany(mappedBy = "event")
-    private Set<Activity> activities = new HashSet<>();
+    private Set<Activity> activities;
 
     @OneToMany(mappedBy = "event")
     private List<Question> questions;
