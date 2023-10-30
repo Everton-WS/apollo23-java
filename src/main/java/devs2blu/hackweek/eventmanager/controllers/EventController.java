@@ -28,7 +28,7 @@ import java.util.List;
 public class EventController {
     final EventService eventService;
 
-    @Operation(summary = "Get all Events",
+    @Operation(summary = "Get all Events", description = "Returns a List of Events",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation")
     })
@@ -38,7 +38,7 @@ public class EventController {
         return ResponseEntity.ok().body(allEvents);
     }
 
-    @Operation(summary = "Find Event by ID", description = "Returns a single Events",
+    @Operation(summary = "Find Event by ID", description = "Returns a single Event",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation",
                             content = @Content(schema = @Schema(implementation = EventResponse.class))),
@@ -53,7 +53,7 @@ public class EventController {
         return ResponseEntity.ok(eventResponse);
     }
 
-    @Operation(summary = "Get All Activities From Event",
+    @Operation(summary = "Get All Activities From Event", description = "Returns a List of Activities from Event",
             responses = {
                 @ApiResponse(responseCode = "200", description = "Successful operation"),
                 @ApiResponse(responseCode = "404", description = "Event not found")
@@ -63,7 +63,7 @@ public class EventController {
         return ResponseEntity.ok(this.eventService.getActivitiesByEventId(id));
     }
 
-    @Operation(summary = "Get All Users From Event",
+    @Operation(summary = "Get All Users From Event", description = "Returns a List of Users from Event",
             responses = {
                 @ApiResponse(responseCode = "200", description = "Successful operation"),
                 @ApiResponse(responseCode = "404", description = "Event not found")
@@ -73,7 +73,7 @@ public class EventController {
         return ResponseEntity.ok(this.eventService.getUsersByEventId(id));
     }
 
-    @Operation(summary = "Get All Treasures From Event",
+    @Operation(summary = "Get All Treasures From Event", description = "Returns a List of Treasures from Event",
             responses = {
                 @ApiResponse(responseCode = "200", description = "Successful operation"),
                 @ApiResponse(responseCode = "404", description = "Event not found")
@@ -83,6 +83,11 @@ public class EventController {
         return ResponseEntity.ok(this.eventService.getTreasuresByEvent(id));
     }
 
+    @Operation(summary = "Get All Questions From Event", description = "Returns a List of Questions from Event",
+            responses = {
+                @ApiResponse(responseCode = "200", description = "Successful operation"),
+                @ApiResponse(responseCode = "404", description = "Event not found")
+    })
     @GetMapping("/{id}/questions")
     public ResponseEntity<List<QuestionResponse>> findQuestionsByEvent(@PathVariable Long id) {
         return ResponseEntity.ok(this.eventService.getQuestionsByEventId(id));
@@ -96,6 +101,16 @@ public class EventController {
     @PostMapping
     public ResponseEntity<EventResponse> createEvent(@RequestBody EventRequest eRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.eventService.createEvent(eRequest));
+    }
+
+    @Operation(summary = "Update an Event",
+        responses = {
+            @ApiResponse(responseCode = "201", description = "Event Successfully created"),
+            @ApiResponse(responseCode = "400", description = "Event couldn't be created")
+    })
+    @PatchMapping("/{id}")
+    public ResponseEntity<EventResponse> updateEvent(@RequestBody EventRequest eRequest, Long id) {
+        return ResponseEntity.ok(this.eventService.updateEvent(eRequest, id));
     }
 
     @Operation(summary = "Delete Event",

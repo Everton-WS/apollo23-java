@@ -1,6 +1,5 @@
 package devs2blu.hackweek.eventmanager.controllers;
 
-import devs2blu.hackweek.eventmanager.constants.ErrorMessages;
 import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerRequest;
 import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerResponse;
 import devs2blu.hackweek.eventmanager.services.SpeakerService;
@@ -25,7 +24,7 @@ import java.util.List;
 public class SpeakerController {
     final SpeakerService speakerService;
 
-    @Operation(summary = "Get all Speakers", description = "Retrieve a list of all speakers")
+    @Operation(summary = "Get all Speakers", description = "Returns a List of All Speakers from System")
     @ApiResponse(responseCode = "200", description = "Successful operation")
     @GetMapping
     public ResponseEntity<List<SpeakerResponse>> findAll() {
@@ -33,7 +32,7 @@ public class SpeakerController {
         return ResponseEntity.ok().body(speakers);
     }
 
-    @Operation(summary = "Find Speaker by ID", description = "Retrieve a single speaker by ID")
+    @Operation(summary = "Get Speaker by ID", description = "Returns a Single Speaker by Id")
     @ApiResponse(responseCode = "200", description = "Successful operation",
             content = @Content(schema = @Schema(implementation = SpeakerResponse.class)))
     @ApiResponse(responseCode = "404", description = "Speaker not found")
@@ -46,29 +45,39 @@ public class SpeakerController {
         return ResponseEntity.ok(speaker);
     }
 
-    @Operation(summary = "Create a new Speaker", description = "Create a new speaker")
-    @ApiResponse(responseCode = "201", description = "Speaker successfully created")
-    @ApiResponse(responseCode = "400", description = "Speaker couldn't be created")
+    // @Operation(summary = "Get Activities By Speaker Id", description = "Returns a Single Activity from Speaker")
+    // @ApiResponse(responseCode = "200", description = "Successful operation",
+    //         content = @Content(schema = @Schema(implementation = SpeakerResponse.class)))
+    // @ApiResponse(responseCode = "404", description = "Speaker not found")
+    // @GetMapping("/{id}")
+    // public ResponseEntity<SpeakerResponse> findActivitiesById(@PathVariable Long id) {
+    //     SpeakerResponse speaker = speakerService.;
+    //     if (speaker == null) {
+    //         throw new EntityNotFoundException("Speaker not found");
+    //     }
+    //     return ResponseEntity.ok(speaker);
+    // }
+
+    @Operation(summary = "Create a new Speaker")
+    @ApiResponse(responseCode = "201", description = "Speaker Successfully Created")
+    @ApiResponse(responseCode = "400", description = "Speaker Couldn't Be Created")
     @PostMapping
     public ResponseEntity<SpeakerResponse> save(@RequestBody @Valid SpeakerRequest request) {
         SpeakerResponse createdSpeaker = speakerService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdSpeaker);
     }
 
-    @Operation(summary = "Update Speaker", description = "Update an existing speaker by ID")
+    @Operation(summary = "Update Speaker", description = "Update an Existing Speaker By ID")
     @ApiResponse(responseCode = "200", description = "Successful operation",
             content = @Content(schema = @Schema(implementation = SpeakerResponse.class)))
     @ApiResponse(responseCode = "404", description = "Speaker not found")
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<SpeakerResponse> update(@PathVariable Long id, @RequestBody @Valid SpeakerRequest request) {
-        SpeakerResponse updatedSpeaker = speakerService.update(id, request);
-        if (updatedSpeaker == null) {
-            throw new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND);
-        }
-        return ResponseEntity.ok(updatedSpeaker);
+
+        return ResponseEntity.ok(this.speakerService.update(id, request));
     }
 
-    @Operation(summary = "Delete Speaker", description = "Delete a speaker by ID")
+    @Operation(summary = "Delete Speaker", description = "Delete a Speaker By Id")
     @ApiResponse(responseCode = "204", description = "Successful operation")
     @ApiResponse(responseCode = "404", description = "Speaker not found")
     @DeleteMapping("/{id}")

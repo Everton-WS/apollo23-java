@@ -4,6 +4,7 @@ import devs2blu.hackweek.eventmanager.dtos.activity.ActivityResponse;
 import devs2blu.hackweek.eventmanager.dtos.event.EventResponse;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureRequest;
 import devs2blu.hackweek.eventmanager.dtos.treasure.TreasureResponse;
+import devs2blu.hackweek.eventmanager.dtos.user.UserResponse;
 import devs2blu.hackweek.eventmanager.services.TreasureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,7 +26,7 @@ public class TreasureController {
 
     final TreasureService treasureService;
 
-    @Operation(summary = "Get all Treasures",
+    @Operation(summary = "Get all Treasures from System",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation")
     })
@@ -34,7 +35,7 @@ public class TreasureController {
         return ResponseEntity.ok(this.treasureService.findAllTreasures());
     }
 
-    @Operation(summary = "Get Treasure by ID", description = "Returns a single Treasure",
+    @Operation(summary = "Get Treasure by ID", description = "Returns a Single Treasure",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation",
                             content = @Content(schema = @Schema(implementation = EventResponse.class))),
@@ -45,7 +46,7 @@ public class TreasureController {
         return ResponseEntity.ok(this.treasureService.findTreasureById(id));       
     }
 
-    @Operation(summary = "Get Event By Treasure Id", description = "Returns a single Event",
+    @Operation(summary = "Get Event By Treasure Id", description = "Returns a Single Event from Treasure",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation",
                             content = @Content(schema = @Schema(implementation = EventResponse.class))),
@@ -56,7 +57,7 @@ public class TreasureController {
         return ResponseEntity.ok(this.treasureService.findTreasureEvent(treasureId));         
     }
 
-    @Operation(summary = "Find Activity by Treasure ID", description = "Returns a single Activity",
+    @Operation(summary = "Get Activity by Treasure Id", description = "Returns a single Activity from Treasure",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Successful operation",
                             content = @Content(schema = @Schema(implementation = EventResponse.class))),
@@ -67,14 +68,35 @@ public class TreasureController {
         return ResponseEntity.ok(this.treasureService.findTreasureActivity(treasureId));         
     }
 
+    @Operation(summary = "Get Users by Treasure ID", description = "Returns a List of Users from Treasure",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Successful operation",
+                            content = @Content(schema = @Schema(implementation = EventResponse.class))),
+                    @ApiResponse(responseCode = "404", description = "Treasure not found")
+    })
+    @GetMapping("/{treasureId}/users")
+    public ResponseEntity<List<UserResponse>> getUsersByTreasure(@PathVariable Long treasureId) throws Exception {
+        return ResponseEntity.ok(this.treasureService.findUsersByTreasure(treasureId));
+    }
+
     @Operation(summary = "Create New Treasure",
         responses = {
             @ApiResponse(responseCode = "201", description = "Treasure Successfully created"),
-            @ApiResponse(responseCode = "400", description = "Treasure could'nt be created")
+            @ApiResponse(responseCode = "400", description = "Treasure Couldn't be Created")
     })
     @PostMapping
     public ResponseEntity<TreasureResponse> createTreasure(@RequestBody TreasureRequest tRequest) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(this.treasureService.createTreasure(tRequest));
+    }
+
+    @Operation(summary = "Update Treasure",
+        responses = {
+            @ApiResponse(responseCode = "201", description = "Treasure Successfully Updated"),
+            @ApiResponse(responseCode = "400", description = "Treasure Couldn't be Updated")
+    })
+    @PatchMapping("/{id}")
+    public ResponseEntity<TreasureResponse> updateTreasure(@RequestBody TreasureRequest tRequest, @PathVariable Long id) throws Exception {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.treasureService.updateTreasure(tRequest, id));
     }
 
     @Operation(summary = "Delete Treasure",

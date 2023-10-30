@@ -1,5 +1,6 @@
 package devs2blu.hackweek.eventmanager.dtos.event;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,6 +17,8 @@ public class EventResponse {
     private String website;
     private String city;
     private String state;
+    @JsonProperty("end_date")
     private LocalDate endDate;
+    @JsonProperty("start_date")
     private LocalDate startDate;
 }

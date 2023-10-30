@@ -12,6 +12,7 @@ import devs2blu.hackweek.eventmanager.entities.Event;
 import devs2blu.hackweek.eventmanager.entities.User;
 import devs2blu.hackweek.eventmanager.repositories.ActivityRepository;
 import devs2blu.hackweek.eventmanager.repositories.EventRepository;
+import devs2blu.hackweek.eventmanager.utils.UpdateEntities;
 import devs2blu.hackweek.eventmanager.utils.mappers.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,13 @@ public class EventService {
         Event newEvent = this.eventRepository.save(e);
 
         return eventMapper.toResponse(newEvent);
+    }
+
+    public EventResponse updateEvent(EventRequest eRequest, Long id) {
+        Event e = this.eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.ID_NOT_FOUND));
+        var updatedEvent = UpdateEntities.updateEvent(eRequest, e);
+
+        return eventMapper.toResponse(this.eventRepository.save(updatedEvent));
     }
 
     public void deleteEventById(Long id) {

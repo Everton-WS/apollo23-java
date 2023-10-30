@@ -11,6 +11,7 @@ import devs2blu.hackweek.eventmanager.entities.Treasure;
 import devs2blu.hackweek.eventmanager.entities.User;
 import devs2blu.hackweek.eventmanager.repositories.QuestionRepository;
 import devs2blu.hackweek.eventmanager.repositories.UserRepository;
+import devs2blu.hackweek.eventmanager.utils.UpdateEntities;
 import devs2blu.hackweek.eventmanager.utils.mappers.*;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -29,15 +30,32 @@ public class UserService {
     private final QuestionMapper questionMapper;
     private final ActivityMapper activityMapper;
 
-    public List<UserResponse> getAllUsersWithEvents() {
-        return userMapper.toResponseList(userRepository.findAllWithEvents());
+    public List<UserResponse> findAllUsersWithEvents() {
+        List<User> users = userRepository.findAllWithEvents();
+        return users.stream()
+                .map(user -> {
+                    UserResponse userResponse = userMapper.toResponse(user);
+                    List<EventResponse> eventResponses = user.getEvents().stream()
+                            .map(eventMapper::toResponse)
+                            .toList();
+                    userResponse.setEventResponses(eventResponses);
+                    return userResponse;
+                })
+                .toList();
     }
+
 
     public UserResponse getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));
 
-        return userMapper.toResponse(user);
+        UserResponse userResponse = userMapper.toResponse(user);
+        List<EventResponse> eventResponses = user.getEvents().stream()
+                .map(eventMapper::toResponse)
+                .toList();
+        userResponse.setEventResponses(eventResponses);
+
+        return userResponse;
     }
 
     public List<EventResponse> getUserEvents(Long id) {
@@ -79,6 +97,17 @@ public class UserService {
         var newUser = this.userRepository.save(createdUser);
 
         return userMapper.toResponse(newUser);
+    }
+
+    public UserResponse updateUser(Long id, UserRequest uRequest) {
+        User user = userRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.USER_NOT_FOUND));  
+
+        var updatedU = UpdateEntities.updateUser(uRequest, user);
+
+        var savedU = this.userRepository.save(updatedU);
+
+        return this.userMapper.toResponse(savedU);
     }
 
     public Integer getUserScore(Long id) {

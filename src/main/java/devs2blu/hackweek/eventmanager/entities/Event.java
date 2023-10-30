@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -45,7 +44,7 @@ public class Event {
     private LocalDate startDate;
 
     @OneToMany(mappedBy = "event")
-    private Set<Activity> activities = new HashSet<>();
+    private Set<Activity> activities;
 
     @OneToMany(mappedBy = "event")
     private List<Question> questions;

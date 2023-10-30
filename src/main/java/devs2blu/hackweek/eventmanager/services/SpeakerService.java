@@ -5,6 +5,7 @@ import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerRequest;
 import devs2blu.hackweek.eventmanager.dtos.speaker.SpeakerResponse;
 import devs2blu.hackweek.eventmanager.entities.Speaker;
 import devs2blu.hackweek.eventmanager.repositories.SpeakerRepository;
+import devs2blu.hackweek.eventmanager.utils.UpdateEntities;
 import devs2blu.hackweek.eventmanager.utils.mappers.SpeakerMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,12 @@ public class SpeakerService {
                 .orElseThrow(() -> new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND));
     }
 
+    // public EventResponse findEventById(Long id) {
+    //     var s = speakerRepository.findById(id).map(mapper::toResponse).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND));
+
+    //     return s.getEventId();
+    // }
+
     public SpeakerResponse save(SpeakerRequest request) {
         return mapper.toResponse(
                 speakerRepository.save(mapper.toEntity(request))
@@ -37,9 +44,11 @@ public class SpeakerService {
     public SpeakerResponse update(Long id, SpeakerRequest request) {
         Speaker speaker = speakerRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ErrorMessages.SPEAKER_NOT_FOUND));
 
-        return mapper.toResponse(
-                speakerRepository.save(mapper.updateEntity(speaker, request))
-        );
+        var updatedS = UpdateEntities.updateSpeaker(request, speaker);
+
+        var savedS = this.speakerRepository.save(updatedS);
+
+        return this.mapper.toResponse(savedS);
     }
 
     public void deleteById(Long id) {
